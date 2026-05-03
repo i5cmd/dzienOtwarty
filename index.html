@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dni otwarte w ZSŁ Gliwice</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="fullscreen-image-container">
+        <button id="close"></button>
+        <img id="fullscreen-image" src="assets/placeholder.jpg">
+    </div>
+    <nav id="nav">
+        <div id="nav1">
+            <img class="logo-nav" draggable="false" src="assets/logo.svg">
+            <a class="nav-link button" id="link-about" href="#Onas">O nas</a>
+            <a class="nav-link button" id="link-tracks" href="#Kierunki">Kierunki</a>
+            <a class="nav-link button" id="link-calendar" href="#Harmonogram">Harmonogram</a>
+            <a class="nav-link button" id="link-register" href="#Rejestracja">Rejestracja</a>
+            <a class="nav-link button" id="link-contact" href="#Kontakt">Kontakt</a>
+        </div>
+        <div id="nav2">
+            <button class="mobile-nav-link button" id="menu-button"></button>
+            <a class="nav-link button" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
+            <button class="dynamic-link button" id="site-mode-button"></button>
+        </div>
+        <div id="mobile-nav">
+            <a class="mobile-link button" id="link-about" href="#Onas">O nas</a>
+            <a class="mobile-link button" id="link-tracks" href="#Kierunki">Kierunki</a>
+            <a class="mobile-link button" id="link-calendar" href="#Harmonogram">Harmonogram</a>
+            <a class="mobile-link button" id="link-register" href="#Rejestracja">Rejestracja</a>
+            <a class="mobile-link button" id="link-contact" href="#Kontakt">Kontakt</a>
+            <a class="mobile-link button" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
+        </div>
+        <script src="scripts/mobilenav.js"></script>
+    </nav>
+    <main>
+        <div id="galeria">
+            <h1 class="shadowedtext gallerytext">Bądź królem w swojej dziedzinie!</h1>
+            <h3 class="shadowedtext gallerytext">Chodź na dni otwarte w Zespole Szkół Łączności</h3>
+            <a class="buttondef borderb button" href="#Rejestracja"><span>Zarejestruj się na dni otwarte</span></a>
+        </div>
+        <div id="Onas">
+            <h1 class="article">O nas</h1>
+            <div id="about">
+                <div class="article desc-about">
+                    <p>Jesteśmy szkołą z prawie 80-letnią historią zlokalizowaną w Gliwicach. Oferujemy bogatą ofertę kierunków dla absolwentów szkół podstawowych. <br> Stawiamy na nowoczesność i innowacyjność. Nasze mury opuszczają profesjonaliści gotowi do podboju rynku IT i technologii.</p>
+                    <ul>
+                        <li>
+                            <h3>Dodatkowe kursy</h3>
+                            <p>Posiadamy licencje do kursów CISCO oraz kursy finansowane przez lokalne władze, przez co uczniowie mogą praktykować dodatkowe umiejętności lepiej.</p>
+                        </li>
+                        <li>
+                            <h3>Nie tylko teoria</h3>
+                            <p>Szkoła w dużej mierze skupia się na praktyce i przygotowuje dobrze do przykładowo egzaminów zawodowych.</p>
+                        </li>
+                        <li>
+                            <h3>Świetne przygotowanie</h3>
+                            <p>Świetnie również przygotowujemy pod egzamin maturalny; Mamy doskonale wykwalifikowaną kadrę.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gallery">
+                    <div id="scrollable-gallery">
+                        <button id="leftb" class="scrollb leftb borderb">←</button><img id="scrollimg" src="assets/zdjecia/1.jpg"><button id="rightb" class="scrollb rightb borderb">→</button>
+                        <script src="scripts/gallery.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Kierunki">
+            <aside id="kierunki-article" class="article">
+                <h1>Kierunki</h1>
+                <h2>Technikum nr 3</h2>
+                <div id="technikum-kierunki" class="kierunki-preview">
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/informatyk.png" draggable="false">
+                        <h4>Technik informatyk</h4>
+                        <p>Ekspert od sprzętu, sieci komputerowych i programowania, który dba o sprawne działanie systemów cyfrowych.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/programista.jpg" draggable="false">
+                        <h4>Technik programista</h4>
+                        <p>Specjalista od kodu, aplikacji i programów komputerowych, oraz algorytmów.</p>
+                    </div>
+                    <div class="kierunek-preview"> 
+                        <img src="assets/kierunki/elektryk.jpg" draggable="false">
+                        <h4>Technik elektryk</h4>
+                        <p>Człowiek znający się na projektowaniu, montażu i naprawy instalacji oraz urządzeń zasilanych prądem.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/elektronik.jpg" draggable="false">
+                        <h4>Technik elektronik</h4>
+                        <p>Fachowiec od projektowania, montażu i naprawy układów elektronicznych oraz systemów sterowania.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/logistyk.jpg" draggable="false">
+                        <h4>Technik logistyk</h4>
+                        <p>Ekspert od planowania i zarządzania przepływem towarów oraz informacji, dbający o to, by wszystko dotarło na miejsce w odpowiednim czasie i przy jak najniższych kosztach.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/port.jpg" draggable="false">
+                        <h4>Technik eksploatacji portów i terminali</h4>
+                        <p>Specjalista od organizacji obsługi podróżnych i ładunków oraz zarządzania ruchem środków transportu w portach, na lotniskach i dworcach.</p>
+                    </div>
+                </div>
+                <h2>Szkoła branżowa I stopnia nr 7</h2>
+                <div id="branzowka-kierunki" class="kierunki-preview">
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/elektryk.jpg" draggable="false">
+                        <h4>Elektryk</h4>
+                        <p>Człowiek znający się na projektowaniu, montażu i naprawy instalacji oraz urządzeń zasilanych prądem.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/elektronik.jpg" draggable="false">
+                        <h4>Elektronik</h4>
+                        <p>Fachowiec od projektowania, montażu i naprawy układów elektronicznych oraz systemów sterowania.</p>
+                    </div>
+                    <div class="kierunek-preview">
+                        <img src="assets/kierunki/elektromechanik.jpg" draggable="false">
+                        <h4>Elektromechanik</h4>
+                        <p>Specjalista zajmujący się diagnozowaniem, naprawą i konserwacją systemów elektrycznych oraz mechanicznych w maszynach, urządzeniach i pojazdach.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <div id="Harmonogram">
+            <h1 class="article">Harmonogram</h1>
+            <div id="divine">
+                <aside id="harmo" class="article">
+                    <p>Dni otwarte odbywają się w dniu <b>22 maja 2026 roku w godzinach 12:00-16:00.</b> <br> Podczas dni otwartych grupy będą odprowadzane w przydzielonych godzinach. <br> W obu dniach:</p>
+                    <div>
+                        <select name="filter" id="filter">
+                            <option>Nic nie filtrowane</option>
+                            <option>Informatyka</option>
+                            <option>Programowanie</option>
+                            <option>Logistyka</option>
+                            <option>Elektryka</option>
+                            <option>Elektronika</option>
+                            <option>Eksploatacja portów i terminali</option>
+                        </select>
+                        <table>
+                            <tr data-category="informatyka">
+                                <td>10:00 - 11:00</td>
+                                <td>Grupa informatyków, gr 1</td>
+                                <td>Sala J3</td>
+                            </tr>
+                            <tr data-category="programowanie">
+                                <td>10:30 - 11:30</td>
+                                <td>Grupa programistów, gr 1</td>
+                                <td>Sala Y7</td>
+                            </tr>
+                            <tr data-category="logistyka">
+                                <td>11:00 - 12:00</td>
+                                <td>Grupa logistyków, gr 1</td>
+                                <td>Sala L13</td>
+                            </tr>
+                            <tr data-category="elektryka">
+                                <td>11:30 - 12:30</td>
+                                <td>Grupa elektryków, gr 1</td>
+                                <td>Sala L3</td>
+                            </tr>
+                            <tr data-category="elektronika">
+                                <td>12:00 - 13:00</td>
+                                <td>Grupa elektroników, gr 1</td>
+                                <td>Sala A0</td>
+                            </tr>
+                            <tr data-category="porty">
+                                <td>12:00 - 13:00</td>
+                                <td>Grupa osób od eksploatacji portów i terminali, gr 1</td>
+                                <td>Sala B14</td>
+                            </tr>
+                            <tr data-category="informatyka">
+                                <td>13:00 - 14:00</td>
+                                <td>Grupa informatyków, gr 2</td>
+                                <td>Sala J3</td>
+                            </tr>
+                            <tr data-category="programowanie">
+                                <td>13:30 - 14:30</td>
+                                <td>Grupa programistów, gr 2</td>
+                                <td>Sala Y7</td>
+                            </tr>
+                            <tr data-category="logistyka">
+                                <td>14:00 - 15:00</td>
+                                <td>Grupa logistyków, gr 2</td>
+                                <td>Sala L13</td>
+                            </tr>
+                            <tr data-category="elektryka">
+                                <td>14:30 - 15:30</td>
+                                <td>Grupa elektryków, gr 2</td>
+                                <td>Sala L3</td>
+                            </tr>
+                            <tr data-category="elektronika">
+                                <td>15:00 - 16:00</td>
+                                <td>Grupa elektroników, gr 2</td>
+                                <td>Sala A0</td>
+                            </tr>
+                            <tr data-category="porty">
+                                <td>15:00 - 16:00</td>
+                                <td>Grupa osób od eksploatacji portów i terminali, gr 2</td>
+                                <td>Sala B14</td>
+                            </tr>
+                        </table>
+                        <script src="scripts/schedule.js"></script>
+                    </div>
+                </aside>
+                <aside id="activities">
+                    <h3>Kandydatów czekają ciekawe aktywności!</h3>
+                    <div id="act1" class="activity-card larger">
+                        Aktywności związane z zawodem!
+                    </div>
+                    <div id="act2" class="activity-card larger">
+                        Ciekawostki o zawodzie!
+                    </div>
+                    <div id="act3" class="activity-card larger">
+                        Quiz i test znajomości!
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <div id="Rejestracja">
+            <h1 class="article">Rejestracja na dni otwarte</h1>
+            <div id="registration">
+                <div id="register">
+                    <form>
+                        <div class="vertical">
+                            <label for="name">Imię</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="vertical">
+                            <label for="surname">Nazwisko</label>
+                            <input type="text" id="surname" name="surname" required>
+                        </div>
+                        <div class="vertical">
+                            <label for="mail">Adres E-mail</label>
+                            <input type="email" id="mail" name="mail" required>
+                        </div>
+                        <div class="vertical">
+                            <label for="groups">Kierunki</label>
+                            <div><input type="checkbox" id="informatycy" name="groups">Informatycy</div>
+                            <div><input type="checkbox" id="programisci" name="groups">Programiści</div>
+                            <div><input type="checkbox" id="logistycy" name="groups">Logistycy</div>
+                            <div><input type="checkbox" id="elektrycy" name="groups">Elektrycy</div>
+                            <div><input type="checkbox" id="elektronicy" name="groups">Elektronicy</div>
+                            <div><input type="checkbox" id="epit" name="groups">Osoby od eksploatacji portów i terminali</div>
+                        </div>
+                        <div class="vertical">
+                            <label for="group">Grupa</label>
+                            <select id="group" name="group" required>
+                                <option>gr 1</option>
+                                <option>gr 2</option>
+                            </select>
+                        </div>
+                        <div class="vertical">
+                            <label for="agreements">Zgody</label>
+                            <div><input type="checkbox" id="rodoiprzetwarzanie" name="agreements" required>Wyrażam zgodę na przetwarzanie moich danych osobowych oraz RODO</div>
+                        </div>
+                        <div>
+                            <input type="submit" id="submit" name="submit" class="borderb buttondef" value="Zatwierdź rejestrację">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <p class="larger">Zarejestrowanych: <br><b><span id="registered">58</span></b> osób</p>
+                    <p class="larger">Dołącz i ty!</p>
+                </div>
+            </div>
+    </div>
+    <div id="Kontakt" class="article">
+        <h1>Kontakt</h1>
+        <div id="contact">
+            <div id="info">
+                <a href="https://maps.app.goo.gl/VhLJabqThVprrXaB9">🏠 Adres: ul. Warszawska 35, 44-100 Gliwice</a><br>
+                <a href="https://mail.google.com/mail/u/1/?view=cm&fs=1&to=sekretariat@zsl.gliwice.pl&tf=1">📩 E-mail: sekretariat@zsl.gliwice.pl</a><br>
+                <a>📞 Telefon: (32) 231-36-12 oraz (32) 231-26-00 - sekretariat wew. 22</a>
+            </div>
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1685.4833775806912!2d18.677988945107455!3d50.308122156347984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711304e89ff6d2d%3A0x814a9a38911a52b1!2zWmVzcMOzxYIgU3prw7PFgiDFgcSFY3pub8WbY2kgdyBHbGl3aWNhY2g!5e1!3m2!1sen!2spl!4v1777829473273!5m2!1sen!2spl" width="300" height="200" id="map-box" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div> 
+    </div>
+    </main>
+    <footer>
+        <p>(C) 2026 i5cmd<br>Strona nie jest prawdziwa. Zrobiona tylko pod projekt końcoworoczny.<br><3</p>
+    </footer>
+</body>
+</html>
