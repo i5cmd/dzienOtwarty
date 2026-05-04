@@ -17,11 +17,11 @@
     <nav id="nav">
         <div id="nav1">
             <img class="logo-nav" draggable="false" src="assets/logo.svg">
-            <a class="nav-link button" id="link-about" href="#Onas">O nas</a>
-            <a class="nav-link button" id="link-tracks" href="#Kierunki">Kierunki</a>
-            <a class="nav-link button" id="link-calendar" href="#Harmonogram">Harmonogram</a>
-            <a class="nav-link button" id="link-register" href="#Rejestracja">Rejestracja</a>
-            <a class="nav-link button" id="link-contact" href="#Kontakt">Kontakt</a>
+            <a class="nav-link button navin" id="link-about" href="#Onas">O nas</a>
+            <a class="nav-link button navin" id="link-tracks" href="#Kierunki">Kierunki</a>
+            <a class="nav-link button navin" id="link-calendar" href="#Harmonogram">Harmonogram</a>
+            <a class="nav-link button navin" id="link-register" href="#Rejestracja">Rejestracja</a>
+            <a class="nav-link button navin" id="link-contact" href="#Kontakt">Kontakt</a>
         </div>
         <div id="nav2">
             <button class="mobile-nav-link button" id="menu-button"></button>
@@ -29,12 +29,12 @@
             <button class="dynamic-link button" id="site-mode-button"></button>
         </div>
         <div id="mobile-nav">
-            <a class="mobile-link button" id="link-about" href="#Onas">O nas</a>
-            <a class="mobile-link button" id="link-tracks" href="#Kierunki">Kierunki</a>
-            <a class="mobile-link button" id="link-calendar" href="#Harmonogram">Harmonogram</a>
-            <a class="mobile-link button" id="link-register" href="#Rejestracja">Rejestracja</a>
-            <a class="mobile-link button" id="link-contact" href="#Kontakt">Kontakt</a>
-            <a class="mobile-link button" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
+            <a class="mobile-link button navin" id="link-about" href="#Onas">O nas</a>
+            <a class="mobile-link button navin" id="link-tracks" href="#Kierunki">Kierunki</a>
+            <a class="mobile-link button navin" id="link-calendar" href="#Harmonogram">Harmonogram</a>
+            <a class="mobile-link button navin" id="link-register" href="#Rejestracja">Rejestracja</a>
+            <a class="mobile-link button navin" id="link-contact" href="#Kontakt">Kontakt</a>
+            <a class="mobile-link button navin" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
         </div>
         <script src="scripts/mobilenav.js"></script>
     </nav>
@@ -226,7 +226,7 @@
             <h1 class="article">Rejestracja na dni otwarte</h1>
             <div id="registration">
                 <div id="register">
-                    <form>
+                    <form method="post">
                         <div class="vertical">
                             <label for="name">Imię</label>
                             <input type="text" id="name" name="name" required>
@@ -241,12 +241,12 @@
                         </div>
                         <div class="vertical">
                             <label for="groups">Kierunki</label>
-                            <div><input type="checkbox" id="informatycy" name="groups">Informatycy</div>
-                            <div><input type="checkbox" id="programisci" name="groups">Programiści</div>
-                            <div><input type="checkbox" id="logistycy" name="groups">Logistycy</div>
-                            <div><input type="checkbox" id="elektrycy" name="groups">Elektrycy</div>
-                            <div><input type="checkbox" id="elektronicy" name="groups">Elektronicy</div>
-                            <div><input type="checkbox" id="epit" name="groups">Osoby od eksploatacji portów i terminali</div>
+                            <div><input class="checkbox" type="checkbox" id="informatycy" name="groups"><a class="checkbox-text">Informatycy</a></div>
+                            <div><input class="checkbox" type="checkbox" id="programisci" name="groups"><a class="checkbox-text">Programiści</a></div>
+                            <div><input class="checkbox" type="checkbox" id="logistycy" name="groups"><a class="checkbox-text">Logistycy</a></div>
+                            <div><input class="checkbox" type="checkbox" id="elektrycy" name="groups"><a class="checkbox-text">Elektrycy</a></div>
+                            <div><input class="checkbox" type="checkbox" id="elektronicy" name="groups"><a class="checkbox-text">Elektronicy</a></div>
+                            <div><input class="checkbox" type="checkbox" id="epit" name="groups"><a class="checkbox-text">Osoby od eksploatacji portów i terminali</a></div>
                         </div>
                         <div class="vertical">
                             <label for="group">Grupa</label>
@@ -257,7 +257,7 @@
                         </div>
                         <div class="vertical">
                             <label for="agreements">Zgody</label>
-                            <div><input type="checkbox" id="rodoiprzetwarzanie" name="agreements" required>Wyrażam zgodę na przetwarzanie moich danych osobowych oraz RODO</div>
+                            <div><input type="checkbox" id="rodoiprzetwarzanie" name="agreements" required><a class="checkbox-text">Wyrażam zgodę na przetwarzanie moich danych osobowych oraz RODO</a></div>
                         </div>
                         <div>
                             <input type="submit" id="submit" name="submit" class="borderb buttondef" value="Zatwierdź rejestrację">
@@ -269,6 +269,7 @@
                     <p class="larger">Dołącz i ty!</p>
                 </div>
             </div>
+            <script src="scripts/registration.js"></script>
     </div>
     <div id="Kontakt" class="article">
         <h1>Kontakt</h1>
@@ -288,5 +289,8 @@
         <p>(C) 2026 i5cmd<br>Strona nie jest prawdziwa. Zrobiona tylko pod projekt końcoworoczny.<br><3</p>
         <a href="https://github.com/i5cmd/dzienOtwarty">Repo</a>
     </footer>
+    <script src="scripts/thememanager.js" type="module"></script>
+    <script src="scripts/scroll.js"></script>
+    <script src="scripts/storage.js" type="module"></script>
 </body>
 </html>

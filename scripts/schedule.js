@@ -48,6 +48,21 @@ class FilterSchedule {
             row.style.display = 'table-row';
         });
     }
+    checkRow(row) {
+        if (row.hasAttribute("data-checked")) {
+            row.style.outline = `none`;
+            row.removeAttribute("data-checked");
+        }
+        else {
+            row.style.outline = `5px var(--blue-border) solid`;
+            row.setAttribute("data-checked", "on");
+        }
+    }
 }
 const filterSchedule = new FilterSchedule();
 filter.addEventListener("change", () => filterSchedule.filterTable(filter.value));
+rows.forEach(row => {
+    row.addEventListener('click', () => {
+        filterSchedule.checkRow(row);
+    });
+});

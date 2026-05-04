@@ -8,7 +8,7 @@ class NavManagement {
         mobileNav.style.display = "flex";
         setTimeout(() => {
             mobileNav.style.transform = "translateX(0)";
-        }, 500);
+        }, 10);
     }
     close() {
         mobileNav.style.transform = "translateX(100%)";
@@ -29,7 +29,5 @@ menuButton.addEventListener('click', () => {
     }
 });
 mobileLinks.forEach(element => {
-    element.addEventListener('click', () => {
-        navManagement.close();
-    });
+    element.addEventListener('click', () => navManagement.close());
 });
