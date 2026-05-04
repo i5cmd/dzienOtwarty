@@ -1,4 +1,4 @@
-import { ThemeManager } from "./themeManager.js";
+import { ThemeManager } from "./thememanager.js";
 
 const counter: HTMLSpanElement = document.getElementById("registered") as HTMLSpanElement;
 counter.textContent = (localStorage.getItem("counter") as string) || "58";
