@@ -3,7 +3,7 @@ html {
   scroll-padding-top: 100px;
 }
 
-@media only screen and (max-width: 833px) {
+@media only screen and (max-width: 1111px) {
     .nav-link {
         display: none !important;
     }
@@ -144,6 +144,7 @@ html {
     }
 
     #registration {
+        flex-direction: column !important;
         gap: 25px !important;
     }
 
@@ -165,7 +166,7 @@ html {
 @media only screen and (max-width: 1025px) {
     #scrollimg {
         width: 100%;
-        max-width: 400px !important;
+        max-width: 300px !important;
         height: auto;
         aspect-ratio: 16 / 10;
         margin: 0;
