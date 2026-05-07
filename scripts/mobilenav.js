@@ -1,33 +1,35 @@
 "use strict";
-const menuButton = document.getElementById("menu-button");
-const mobileNav = document.getElementById("mobile-nav");
-const mobileLinks = document.querySelectorAll(".mobile-link");
+/// <reference types="jquery" />
+// const menuButton: HTMLButtonElement = document.getElementById("menu-button") as HTMLButtonElement;
+// const mobileNav: HTMLDivElement = document.getElementById("mobile-nav") as HTMLDivElement;
+// const mobileLinks: NodeList = document.querySelectorAll(".mobile-link");
 let powered = false;
 class NavManagement {
     open() {
-        mobileNav.style.display = "flex";
+        $('#mobile-nav').css("display", "flex");
         setTimeout(() => {
-            mobileNav.style.transform = "translateX(0)";
+            $('#mobile-nav').css("transform", "translateX(0)");
         }, 10);
     }
     close() {
-        mobileNav.style.transform = "translateX(100%)";
+        $('#mobile-nav').css("transform", "translateX(100%)");
         setTimeout(() => {
-            mobileNav.style.display = "none";
+            $('#mobile-nav').css("display", "none");
         }, 500);
     }
 }
 const navManagement = new NavManagement();
-menuButton.addEventListener('click', () => {
+$('#menu-button').click(() => {
     powered = !powered;
     if (powered) {
         navManagement.open();
     }
     else {
-        mobileNav.style.display = "flex";
+        $('#menu-button').css("display", "flex");
         navManagement.close();
     }
 });
-mobileLinks.forEach(element => {
+/* mobileLinks.forEach(element => {
     element.addEventListener('click', () => navManagement.close());
-});
+}); */
+$(".mobile-link").click(() => navManagement.close());

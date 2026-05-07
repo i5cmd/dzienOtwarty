@@ -1,4 +1,5 @@
-const modeButton = document.getElementById("site-mode-button");
+/// <reference types="jquery" />
+// const modeButton: HTMLButtonElement = document.getElementById("site-mode-button") as HTMLButtonElement;
 let theme = false;
 export class ThemeManager {
     darkTheme() {
@@ -21,7 +22,12 @@ export class ThemeManager {
     }
 }
 const themeManager = new ThemeManager();
-modeButton.addEventListener('click', () => {
+/* modeButton.addEventListener('click', () => {
+    theme = !theme;
+
+    themeManager.loadTheme(theme);
+}); */
+$("#site-mode-button").click(() => {
     theme = !theme;
     themeManager.loadTheme(theme);
 });

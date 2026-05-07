@@ -1,4 +1,6 @@
-const links: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(".navin") as NodeListOf<HTMLAnchorElement>;
+/// <reference types="jquery" />
+
+//const links: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(".navin") as NodeListOf<HTMLAnchorElement>;
 
 class IdNavigation {
     scrollTo(id: string) {
@@ -13,10 +15,16 @@ class IdNavigation {
 
 const idNavigation: IdNavigation = new IdNavigation();
 
-links.forEach(link => {
+/* links.forEach(link => {
     link.addEventListener('click', (e: Event) => {
         e.preventDefault();
         const target: string = (link as HTMLAnchorElement).getAttribute("href")!;
         idNavigation.scrollTo(target);
     });
-});
+}); */
+
+$('.navin').click((e) => {
+    e.preventDefault();
+    const target: string = $(e.currentTarget).attr("href")!;
+    idNavigation.scrollTo(target);
+})

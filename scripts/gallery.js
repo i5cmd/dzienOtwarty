@@ -1,4 +1,5 @@
 "use strict";
+/// <reference types="jquery" />
 const leftButton = document.getElementById("leftb");
 const rightButton = document.getElementById("rightb");
 const image = document.getElementById("scrollimg");
@@ -14,22 +15,30 @@ class GalleryManagement {
         image.src = `${folder}${photos[this.currentPhoto]}`;
     }
     previousPhoto(no) {
-        this.currentPhoto -= no;
-        if (this.currentPhoto < 0) {
-            this.currentPhoto = photos.length - 1;
-        }
-        image.src = `${folder}${photos[this.currentPhoto]}`;
+        $(image).fadeOut(500);
+        setTimeout(() => {
+            this.currentPhoto -= no;
+            if (this.currentPhoto < 0) {
+                this.currentPhoto = photos.length - 1;
+            }
+            image.src = `${folder}${photos[this.currentPhoto]}`;
+            $(image).fadeIn(500);
+        }, 450);
     }
     nextPhoto(no) {
-        this.currentPhoto += no;
-        if (this.currentPhoto >= photos.length) {
-            this.currentPhoto = 0;
-        }
-        image.src = `${folder}${photos[this.currentPhoto]}`;
+        $(image).fadeOut(500);
+        setTimeout(() => {
+            this.currentPhoto += no;
+            if (this.currentPhoto >= photos.length) {
+                this.currentPhoto = 0;
+            }
+            image.src = `${folder}${photos[this.currentPhoto]}`;
+            $(image).fadeIn(500);
+        }, 450);
     }
     fullscreenMode(turn) {
         if (turn) {
-            fullscreenContainer.style.display = "flex";
+            $(fullscreenContainer).css("display", "flex");
             fullscreenImage.src = image.src;
         }
         else {

@@ -1,4 +1,5 @@
-const submit: HTMLSelectElement = document.getElementById("submit") as HTMLSelectElement;
+/// <reference types="jquery" />
+// const submit: HTMLSelectElement = document.getElementById("submit") as HTMLSelectElement;
 
 class RegistrationSystem {
     checkInputs(name: string, surname: string, mail: string, group: string, checked: NodeList, rodo: HTMLInputElement, counter: HTMLSpanElement): void {
@@ -16,7 +17,7 @@ class RegistrationSystem {
         let checkedTracks: any[] = [];
         let checkboxArray: Array<any> = Array.from(checked);
         checkboxArray.forEach(cbox => {
-            checkedTracks.push((cbox as HTMLInputElement).id)
+            checkedTracks.push((cbox as HTMLInputElement).id);
         });
         let data = {
             name: name,
@@ -42,7 +43,7 @@ class RegistrationSystem {
 
 let registration: RegistrationSystem = new RegistrationSystem();
 
-submit.addEventListener('click', (e) => {
+/* submit.addEventListener('click', (e) => {
     e.preventDefault();
     const nameInput: HTMLInputElement = document.getElementById("name") as HTMLInputElement;
     const surInput: HTMLInputElement = document.getElementById("surname") as HTMLInputElement;
@@ -54,4 +55,11 @@ submit.addEventListener('click', (e) => {
     let data: any = registration.checkInputs(nameInput.value, surInput.value, mailInput.value, group.value, checkboxes, rodo, counter);
 
     console.log(data);
-});
+}); */
+
+$("#submit").click((e) => {
+    e.preventDefault();
+    const checkboxes: NodeList = document.querySelectorAll(".checkbox:checked");
+    let data: any = registration.checkInputs($("#name").val() as string, $("#surname").val() as string, $("#mail").val() as string, $("#group").val() as string, checkboxes, $("#rodoiprzetwarzanie")[0] as HTMLInputElement, $("#registered")[0] as HTMLSpanElement);
+    console.log(data);
+})
