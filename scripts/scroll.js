@@ -1,7 +1,6 @@
-"use strict";
 /// <reference types="jquery" />
 //const links: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(".navin") as NodeListOf<HTMLAnchorElement>;
-class IdNavigation {
+export class IdNavigation {
     scrollTo(id) {
         const target = document.querySelector(id);
         const distance = target.getBoundingClientRect().top;
@@ -11,7 +10,7 @@ class IdNavigation {
         });
     }
 }
-const idNavigation = new IdNavigation();
+// const idNavigation: IdNavigation = new IdNavigation();
 /* links.forEach(link => {
     link.addEventListener('click', (e: Event) => {
         e.preventDefault();
@@ -19,8 +18,3 @@ const idNavigation = new IdNavigation();
         idNavigation.scrollTo(target);
     });
 }); */
-$('.navin').click((e) => {
-    e.preventDefault();
-    const target = $(e.currentTarget).attr("href");
-    idNavigation.scrollTo(target);
-});

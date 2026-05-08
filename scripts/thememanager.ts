@@ -1,30 +1,32 @@
 /// <reference types="jquery" />
 // const modeButton: HTMLButtonElement = document.getElementById("site-mode-button") as HTMLButtonElement;
 
-let theme = false;
+export let theme = false;
 
 export class ThemeManager {
     darkTheme() {
-        document.documentElement.setAttribute("data-theme", "dark");
+        //document.documentElement.setAttribute("data-theme", "dark");
+        $("html").attr("data-theme", "dark");
         theme = true;
     }
     lightMode() {
-        document.documentElement.removeAttribute("data-theme");
+        //document.documentElement.removeAttribute("data-theme");
+        $("html").removeAttr("data-theme");
         theme = false;
     }
-    loadTheme(theme: boolean) {
-        if (theme) {
+    loadTheme(themeGot: boolean) {
+        if (themeGot) {
             this.darkTheme();
+            theme = themeGot;
             localStorage.setItem("theme", "dark");
         }
         else {
             this.lightMode();
+            theme = themeGot;
             localStorage.setItem("theme", "light");
         }
     }
 }   
-
-const themeManager: ThemeManager = new ThemeManager();
 
 /* modeButton.addEventListener('click', () => {
     theme = !theme;
@@ -32,7 +34,3 @@ const themeManager: ThemeManager = new ThemeManager();
     themeManager.loadTheme(theme);
 }); */
 
-$("#site-mode-button").click(() => {
-    theme = !theme;
-    themeManager.loadTheme(theme);
-})

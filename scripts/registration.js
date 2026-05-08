@@ -1,8 +1,7 @@
-"use strict";
 /// <reference types="jquery" />
 // const submit: HTMLSelectElement = document.getElementById("submit") as HTMLSelectElement;
-class RegistrationSystem {
-    checkInputs(name, surname, mail, group, checked, rodo, counter) {
+export class RegistrationSystem {
+    register(name, surname, mail, group, checked, rodo, counter) {
         if ((name.trim() == "") || (surname.trim() == "") || (mail.trim() == "") || (mail.includes("@") == false) || (checked.length == 0) || (rodo.checked == false)) {
             alert("Uzupełnij wszystkie pola poprawnie.");
             return;
@@ -38,7 +37,6 @@ class RegistrationSystem {
         people.textContent = registered.toString();
     }
 }
-let registration = new RegistrationSystem();
 /* submit.addEventListener('click', (e) => {
     e.preventDefault();
     const nameInput: HTMLInputElement = document.getElementById("name") as HTMLInputElement;
@@ -51,10 +49,4 @@ let registration = new RegistrationSystem();
     let data: any = registration.checkInputs(nameInput.value, surInput.value, mailInput.value, group.value, checkboxes, rodo, counter);
 
     console.log(data);
-}); */
-$("#submit").click((e) => {
-    e.preventDefault();
-    const checkboxes = document.querySelectorAll(".checkbox:checked");
-    let data = registration.checkInputs($("#name").val(), $("#surname").val(), $("#mail").val(), $("#group").val(), checkboxes, $("#rodoiprzetwarzanie")[0], $("#registered")[0]);
-    console.log(data);
-});
+}); */ 

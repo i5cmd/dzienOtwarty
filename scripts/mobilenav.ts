@@ -6,7 +6,7 @@
 
 let powered: boolean = false;
 
-class NavManagement {
+export class NavManagement {
     open(): void {
         $('#mobile-nav').css("display", "flex");
         setTimeout(() => {
@@ -21,21 +21,7 @@ class NavManagement {
     }
 }
 
-const navManagement: NavManagement = new NavManagement();
-
-$('#menu-button').click(() => {
-    powered = !powered;
-    if (powered) {
-        navManagement.open();
-    }
-    else {
-        $('#menu-button').css("display", "flex");
-        navManagement.close();
-    }
-})
 
 /* mobileLinks.forEach(element => {
     element.addEventListener('click', () => navManagement.close());
 }); */
-
-$(".mobile-link").click(() => navManagement.close());

@@ -1,0 +1,81 @@
+// drogi panie Dziewulski, ja bym bardzo chcial zadeklarowac te wartosci jQuery jako zwykle stale, bo czysciej, a ja lubie czyste buty... (ostatnio musialem chodzic butami po polu ziemniakow bo koledze sie zachcialo. ale tu doslownie, mam buty z blota)
+// mam nadzieje, ze pan mnie nie zabije za to. 😔😔😔
+// klasy
+import { RegistrationSystem } from "./registration.js";
+import { ThemeManager, theme } from "./thememanager.js";
+import { IdNavigation } from "./scroll.js";
+import { NavManagement } from "./mobilenav.js";
+import { FilterSchedule } from "./schedule.js";
+const registration = new RegistrationSystem();
+const themeManager = new ThemeManager();
+const idNav = new IdNavigation();
+const navManagement = new NavManagement();
+const filterSchedule = new FilterSchedule();
+// zmienne
+let themeLocal = theme; // motyw
+let powered = false; // mobilenav
+// elementy
+// rejestracja
+const $SUBMIT_REG = $("#submit");
+const $USERNAME = $("#name");
+const $USERSURNAME = $("#surname");
+const $EMAIL = $("#mail");
+const $GROUP = $("#group");
+const checkboxes = document.querySelectorAll(".checkbox:checked"); // nwm jak interpretowac nodelist w jquery, wiec tak to zostawiam bo dziala lol
+const $RODO = $("#rodoiprzetwarzanie")[0]; // [0] bo to checkbox itd. nawet jak jest id, to jq to traktuje jak ala tablice. taka notka dla mnie lmao
+const $REGNUM = $("#registered")[0];
+// motyw
+const $THEME_BUT = $("#site-mode-button");
+// scroll
+const $NAV_LINK = $(".navin");
+const $REGISTER_BUT = $("#regButton");
+// mobilna nawigacja
+const $MOBILE_NAV_B = $('#menu-button');
+const $MOBILE_LINK = $(".mobile-link");
+// harmonogram
+const $FILTER = $("#filter");
+// const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr") as NodeListOf<HTMLTableRowElement>;
+const $ROW = $("tr");
+// ------------------
+// rejestracja
+$SUBMIT_REG.click((e) => {
+    e.preventDefault();
+    let data = registration.register($USERNAME.val(), $USERSURNAME.val(), $EMAIL.val(), $GROUP.val(), checkboxes, $RODO, $REGNUM);
+    console.log(data);
+});
+// motyw
+$THEME_BUT.click(() => {
+    themeLocal = !themeLocal;
+    themeManager.loadTheme(themeLocal);
+});
+// scroll
+$NAV_LINK.click((e) => {
+    e.preventDefault();
+    const target = $(e.currentTarget).attr("href");
+    idNav.scrollTo(target);
+});
+$REGISTER_BUT.click((e) => {
+    e.preventDefault();
+    const target = $("#regButton").attr("href");
+    idNav.scrollTo(target);
+});
+// mobile nawigacja
+$MOBILE_NAV_B.click(() => {
+    powered = !powered;
+    if (powered) {
+        navManagement.open();
+    }
+    else {
+        $MOBILE_NAV_B.css("display", "flex");
+        navManagement.close();
+    }
+});
+$MOBILE_LINK.click(() => navManagement.close());
+// harmonogram
+$FILTER.on("change", () => filterSchedule.filterTable($FILTER.val(), $ROW));
+/* rows.forEach(row => {
+    row.addEventListener('click', () => {
+        filterSchedule.checkRow(row);
+    });
+}); */
+$ROW.click((e) => filterSchedule.checkRow($(e.currentTarget)));

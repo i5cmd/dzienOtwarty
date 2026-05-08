@@ -1,55 +1,60 @@
-const filter: HTMLSelectElement = document.getElementById("filter") as HTMLSelectElement;
-const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr") as NodeListOf<HTMLTableRowElement>;
+/// <reference types="jquery" />
+// const filter: HTMLSelectElement = document.getElementById("filter") as HTMLSelectElement;
+// const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr") as NodeListOf<HTMLTableRowElement>;
 
-class FilterSchedule {
-    filterTable(value: string) {
+export class FilterSchedule {
+    filterTable(value: string, row: JQuery<HTMLTableRowElement>) {
         let val = value;
         if (val == "Nic nie filtrowane") {
-            this.showAll();
+            this.showAll(row);
         }
         else if (val == "Informatyka") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('informatyka');
         }
         else if (val == "Programowanie") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('programowanie');
         }
         else if (val == "Logistyka") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('logistyka');
         }
         else if (val == "Elektryka") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('elektryka');
         }
         else if (val == "Elektronika") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('elektronika');
         }
         else if (val == "Eksploatacja portów i terminali") {
-            this.hideAll();
+            this.hideAll(row);
             this.filter('porty');
         }
             
     }
-    hideAll(): void {
-        rows.forEach(row => {
+    private hideAll(row: JQuery<HTMLTableRowElement>): void {
+        /* rows.forEach(row => {
                 row.style.display = 'none';
-        });
+        }); */
+        row.css("display", "none");
     }
-    showAll(): void {
-        rows.forEach(row => {
+    private showAll(row: JQuery<HTMLTableRowElement>): void {
+        /* rows.forEach(row => {
             row.style.display = 'table-row';
-        });
+        }); */
+        row.css("display", "table-row");
     }
     private filter(category: string): void {
-        let irows = document.querySelectorAll(`tr[data-category='${category}']`) as NodeListOf<HTMLTableRowElement>;
+        /* let irows = document.querySelectorAll(`tr[data-category='${category}']`) as NodeListOf<HTMLTableRowElement>;
         irows.forEach(row => {
             row.style.display = 'table-row';
-        });
+        }); */
+        const irows: JQuery<HTMLTableRowElement> = $(`tr[data-category='${category}']`);
+        irows.css("display", "table-row");
     }
-    checkRow(row: HTMLTableRowElement) {
+    /* checkRow(row: HTMLTableRowElement) {
         if (row.hasAttribute("data-checked")) {
             row.style.outline = `none`;
             row.removeAttribute("data-checked")
@@ -58,14 +63,18 @@ class FilterSchedule {
             row.style.outline = `5px var(--blue-border) solid`;
             row.setAttribute("data-checked", "on");
         }
-    }
+    } */
+    checkRow(row: JQuery<HTMLTableRowElement>) {
+        if (row.attr("data-checked")) {
+            row.css("outline", "0");
+            row.removeAttr("data-checked");
+        }
+        else {
+            row.css("outline", "5px var(--blue-border) solid");
+            row.attr("data-checked", "on");
+        }
+    } 
 }
 
 const filterSchedule: FilterSchedule = new FilterSchedule();
-filter.addEventListener("change", () => filterSchedule.filterTable(filter.value));
 
-rows.forEach(row => {
-    row.addEventListener('click', () => {
-        filterSchedule.checkRow(row);
-    });
-});

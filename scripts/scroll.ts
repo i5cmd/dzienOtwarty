@@ -2,7 +2,7 @@
 
 //const links: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(".navin") as NodeListOf<HTMLAnchorElement>;
 
-class IdNavigation {
+export class IdNavigation {
     scrollTo(id: string) {
         const target: HTMLDivElement = document.querySelector(id) as HTMLDivElement;
         const distance: number = target.getBoundingClientRect().top;
@@ -13,7 +13,7 @@ class IdNavigation {
     }
 }
 
-const idNavigation: IdNavigation = new IdNavigation();
+// const idNavigation: IdNavigation = new IdNavigation();
 
 /* links.forEach(link => {
     link.addEventListener('click', (e: Event) => {
@@ -22,9 +22,3 @@ const idNavigation: IdNavigation = new IdNavigation();
         idNavigation.scrollTo(target);
     });
 }); */
-
-$('.navin').click((e) => {
-    e.preventDefault();
-    const target: string = $(e.currentTarget).attr("href")!;
-    idNavigation.scrollTo(target);
-})
