@@ -7,12 +7,14 @@ import { ThemeManager, theme } from "./thememanager.js";
 import { IdNavigation } from "./scroll.js";
 import { NavManagement } from "./mobilenav.js";
 import { FilterSchedule } from "./schedule.js";
+import { GalleryManagement } from "./gallery.js";
 
 const registration: RegistrationSystem = new RegistrationSystem();
 const themeManager: ThemeManager = new ThemeManager();
 const idNav: IdNavigation = new IdNavigation();
 const navManagement: NavManagement = new NavManagement();
 const filterSchedule: FilterSchedule = new FilterSchedule();
+const galleryManagement: GalleryManagement = new GalleryManagement();
 
 // zmienne
 
@@ -45,6 +47,18 @@ const $MOBILE_LINK: JQuery<HTMLAnchorElement> = $(".mobile-link");
 const $FILTER: JQuery<HTMLSelectElement> = $("#filter");
 // const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr") as NodeListOf<HTMLTableRowElement>;
 const $ROW: JQuery<HTMLTableRowElement> = $("tr");
+
+// galeria
+const $LEFT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#leftb");
+const $RIGHT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#rightb");
+const $GALLERY_IMAGE: JQuery<HTMLImageElement> = $("#scrollimg");
+const photos: Array<String> = ["1.jpg", "2.jpg", "3.jpg"];
+const folder: string = "assets/zdjecia/"
+const $FULLSCREEN_CONTAINER: JQuery<HTMLDivElement> = $("#fullscreen-image-container");
+const $CLOSE_FLSC: JQuery<HTMLButtonElement> = $("#close");
+const $FULLSCREEN_IMAGE: JQuery<HTMLImageElement> = $("#fullscreen-image");
+const $ZOOM_IN_BUTTON: JQuery<HTMLButtonElement> = $("#zoomin");
+const $ZOOM_OUT_BUTTON: JQuery<HTMLButtonElement> = $("#zoomout");
 
 // ------------------
 
@@ -106,3 +120,16 @@ $ROW.click((e) => filterSchedule.checkRow($(e.currentTarget as HTMLTableRowEleme
 
 // galeria
 
+galleryManagement.setPhoto(0, $GALLERY_IMAGE, photos, folder);
+
+$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMAGE, photos, folder));
+$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
+$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+
+$FULLSCREEN_IMAGE.on("pointerdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
+$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));

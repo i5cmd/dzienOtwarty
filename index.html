@@ -12,8 +12,8 @@
 <body>
     <script src="scripts/jquery.js"></script>
     <div id="fullscreen-image-container">
-        <button id="close"></button>
-        <img id="fullscreen-image" src="assets/placeholder.jpg">
+        <div id="toolbar"><button id="zoomin"></button><button id="zoomout"></button><button id="close"></button></div>
+        <img id="fullscreen-image" src="assets/placeholder.jpg" draggable="false">
     </div>
     <nav id="nav">
         <div id="nav1">
@@ -67,7 +67,6 @@
                 <div class="gallery">
                     <div id="scrollable-gallery">
                         <button id="leftb" class="scrollb leftb borderb">←</button><img id="scrollimg" src="assets/zdjecia/1.jpg"><button id="rightb" class="scrollb rightb borderb">→</button>
-                        <script src="scripts/gallery.js"></script>
                     </div>
                 </div>
             </div>

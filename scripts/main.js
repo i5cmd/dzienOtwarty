@@ -6,11 +6,13 @@ import { ThemeManager, theme } from "./thememanager.js";
 import { IdNavigation } from "./scroll.js";
 import { NavManagement } from "./mobilenav.js";
 import { FilterSchedule } from "./schedule.js";
+import { GalleryManagement } from "./gallery.js";
 const registration = new RegistrationSystem();
 const themeManager = new ThemeManager();
 const idNav = new IdNavigation();
 const navManagement = new NavManagement();
 const filterSchedule = new FilterSchedule();
+const galleryManagement = new GalleryManagement();
 // zmienne
 let themeLocal = theme; // motyw
 let powered = false; // mobilenav
@@ -36,6 +38,17 @@ const $MOBILE_LINK = $(".mobile-link");
 const $FILTER = $("#filter");
 // const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr") as NodeListOf<HTMLTableRowElement>;
 const $ROW = $("tr");
+// galeria
+const $LEFT_GALLERY_BUTTON = $("#leftb");
+const $RIGHT_GALLERY_BUTTON = $("#rightb");
+const $GALLERY_IMAGE = $("#scrollimg");
+const photos = ["1.jpg", "2.jpg", "3.jpg"];
+const folder = "assets/zdjecia/";
+const $FULLSCREEN_CONTAINER = $("#fullscreen-image-container");
+const $CLOSE_FLSC = $("#close");
+const $FULLSCREEN_IMAGE = $("#fullscreen-image");
+const $ZOOM_IN_BUTTON = $("#zoomin");
+const $ZOOM_OUT_BUTTON = $("#zoomout");
 // ------------------
 // rejestracja
 $SUBMIT_REG.click((e) => {
@@ -79,3 +92,15 @@ $FILTER.on("change", () => filterSchedule.filterTable($FILTER.val(), $ROW));
     });
 }); */
 $ROW.click((e) => filterSchedule.checkRow($(e.currentTarget)));
+// galeria
+galleryManagement.setPhoto(0, $GALLERY_IMAGE, photos, folder);
+$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMAGE, photos, folder));
+$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
+$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+$FULLSCREEN_IMAGE.on("pointerdown", (e) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchdown", (e) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
+$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
