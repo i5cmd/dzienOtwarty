@@ -46,6 +46,7 @@ export class GalleryManagement {
             fullscreenImage.css("top", "0px");
             fullscreenImage.css("left", "0px");
             fullscreenImage.css("transform", "scale(1)");
+            this.scale = 1;
             fullscreenContainer.css("display", "flex");
             //fullscreenImage.src = image.src;
             fullscreenImage.attr("src", image.attr("src")!);
