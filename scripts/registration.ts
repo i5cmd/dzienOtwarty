@@ -2,14 +2,16 @@
 // const submit: HTMLSelectElement = document.getElementById("submit") as HTMLSelectElement;
 
 export class RegistrationSystem {
-    register(name: string, surname: string, mail: string, group: string, checked: NodeList, rodo: HTMLInputElement, counter: HTMLSpanElement): void {
+    register(name: string, surname: string, mail: string, group: string, checked: NodeList, rodo: HTMLInputElement, counter: HTMLSpanElement, register: JQuery<HTMLDivElement>, register_con: JQuery<HTMLDivElement>): void {
         if ((name.trim() == "") || (surname.trim() == "") || (mail.trim() == "") || (mail.includes("@") == false) || (checked.length == 0) || (rodo.checked == false)) {
             alert("Uzupełnij wszystkie pola poprawnie.")
             return;
         }
         else {
             this.addToCounter(counter);
-            alert("Dziękujemy za zgłoszenie!")
+            alert("Dziękujemy za zgłoszenie!");
+            this.container(true, register, register_con);
+            localStorage.setItem("registered", "true");
             return this.saveFile(name, surname, mail, group, checked, rodo);
         }
     }
@@ -35,9 +37,40 @@ export class RegistrationSystem {
 
     private addToCounter(people: HTMLSpanElement) {
         let registered: number = Number(people.textContent);
+        if (isNaN(registered)) {
+            registered = 58;
+        }
         registered++;
         localStorage.setItem("counter", registered.toString());
         people.textContent = registered.toString();
+    }
+    
+    container(b: boolean, register: JQuery<HTMLDivElement>, reg_con: JQuery<HTMLDivElement>) {
+        if (b) {
+            register.addClass("hidden");
+            let cont = $("<div />", {
+                id: "thanks_con"
+            }).appendTo(reg_con);
+
+            $("<a />", {
+                id: "thanks",
+                text: "Dziękujemy za zgłoszenie",    
+            }).appendTo(cont);
+
+            $("<button />", {
+                id: "thanks",
+                class: "buttondef borderb",
+                text: "Zarejestruj inną osobę",
+                click: () => { 
+                    cont.remove();
+                    register.removeClass("hidden");
+                    localStorage.setItem("registered", "false");
+                }
+            }).appendTo(cont);
+        }
+        else {
+            register.removeClass("hidden");
+        }
     }
 }
 

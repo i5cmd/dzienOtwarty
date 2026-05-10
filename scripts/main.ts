@@ -24,13 +24,10 @@ let powered: boolean = false; // mobilenav
 // elementy
 // rejestracja
 const $SUBMIT_REG: JQuery<HTMLInputElement> = $("#submit");
-const $USERNAME: JQuery<HTMLInputElement> = $("#name");
-const $USERSURNAME: JQuery<HTMLInputElement> = $("#surname");
-const $EMAIL: JQuery<HTMLInputElement> = $("#mail");
-const $GROUP: JQuery<HTMLSelectElement> = $("#group");
-const checkboxes: NodeList = document.querySelectorAll(".checkbox:checked"); // nwm jak interpretowac nodelist w jquery, wiec tak to zostawiam bo dziala lol
-const $RODO: HTMLInputElement = $("#rodoiprzetwarzanie")[0] as HTMLInputElement; // [0] bo to checkbox itd. nawet jak jest id, to jq to traktuje jak ala tablice. taka notka dla mnie lmao
 const $REGNUM: HTMLSpanElement = $("#registered")[0] as HTMLSpanElement;
+
+const $REG: JQuery<HTMLDivElement> = $("#register");
+const $REG_CON: JQuery<HTMLDivElement> = $("#registration");
 
 // motyw
 const $THEME_BUT: JQuery<HTMLButtonElement> = $("#site-mode-button");
@@ -66,8 +63,14 @@ const $RESET_BUTTON: JQuery<HTMLButtonElement> = $("#reset");
 // rejestracja
 
 $SUBMIT_REG.click((e) => {
+    const $USERNAME: JQuery<HTMLInputElement> = $("#name");
+    const $USERSURNAME: JQuery<HTMLInputElement> = $("#surname");
+    const $EMAIL: JQuery<HTMLInputElement> = $("#mail");
+    const $GROUP: JQuery<HTMLSelectElement> = $("#group");
+    const checkboxes: NodeList = document.querySelectorAll(".checkbox:checked"); // nwm jak interpretowac nodelist w jquery, wiec tak to zostawiam bo dziala lol
+    const $RODO: HTMLInputElement = $("#rodoiprzetwarzanie")[0] as HTMLInputElement; // [0] bo to checkbox itd. nawet jak jest id, to jq to traktuje jak ala tablice. taka notka dla mnie lmao
     e.preventDefault();
-    let data: any = registration.register($USERNAME.val() as string, $USERSURNAME.val() as string, $EMAIL.val() as string, $GROUP.val() as string, checkboxes, $RODO, $REGNUM);
+    let data: any = registration.register($USERNAME.val() as string, $USERSURNAME.val() as string, $EMAIL.val() as string, $GROUP.val() as string, checkboxes, $RODO, $REGNUM, $REG, $REG_CON);
     console.log(data);
 })
 
@@ -128,9 +131,7 @@ $RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE,
 $GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $FULLSCREEN_IMAGE.on("pointerdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
-$FULLSCREEN_IMAGE.on("touchstart", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
-$FULLSCREEN_IMAGE.on("touchend", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
 $ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("wheel", (e: JQuery.TriggeredEvent) => {

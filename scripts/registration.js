@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 // const submit: HTMLSelectElement = document.getElementById("submit") as HTMLSelectElement;
 export class RegistrationSystem {
-    register(name, surname, mail, group, checked, rodo, counter) {
+    register(name, surname, mail, group, checked, rodo, counter, register, register_con) {
         if ((name.trim() == "") || (surname.trim() == "") || (mail.trim() == "") || (mail.includes("@") == false) || (checked.length == 0) || (rodo.checked == false)) {
             alert("Uzupełnij wszystkie pola poprawnie.");
             return;
@@ -9,6 +9,8 @@ export class RegistrationSystem {
         else {
             this.addToCounter(counter);
             alert("Dziękujemy za zgłoszenie!");
+            this.container(true, register, register_con);
+            localStorage.setItem("registered", "true");
             return this.saveFile(name, surname, mail, group, checked, rodo);
         }
     }
@@ -32,9 +34,37 @@ export class RegistrationSystem {
     }
     addToCounter(people) {
         let registered = Number(people.textContent);
+        if (isNaN(registered)) {
+            registered = 58;
+        }
         registered++;
         localStorage.setItem("counter", registered.toString());
         people.textContent = registered.toString();
+    }
+    container(b, register, reg_con) {
+        if (b) {
+            register.addClass("hidden");
+            let cont = $("<div />", {
+                id: "thanks_con"
+            }).appendTo(reg_con);
+            $("<a />", {
+                id: "thanks",
+                text: "Dziękujemy za zgłoszenie",
+            }).appendTo(cont);
+            $("<button />", {
+                id: "thanks",
+                class: "buttondef borderb",
+                text: "Zarejestruj inną osobę",
+                click: () => {
+                    cont.remove();
+                    register.removeClass("hidden");
+                    localStorage.setItem("registered", "false");
+                }
+            }).appendTo(cont);
+        }
+        else {
+            register.removeClass("hidden");
+        }
     }
 }
 /* submit.addEventListener('click', (e) => {
