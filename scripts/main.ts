@@ -59,6 +59,7 @@ const $CLOSE_FLSC: JQuery<HTMLButtonElement> = $("#close");
 const $FULLSCREEN_IMAGE: JQuery<HTMLImageElement> = $("#fullscreen-image");
 const $ZOOM_IN_BUTTON: JQuery<HTMLButtonElement> = $("#zoomin");
 const $ZOOM_OUT_BUTTON: JQuery<HTMLButtonElement> = $("#zoomout");
+const $RESET_BUTTON: JQuery<HTMLButtonElement> = $("#reset");
 
 // ------------------
 
@@ -126,10 +127,16 @@ $LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMA
 $RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
 $GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
-
 $FULLSCREEN_IMAGE.on("pointerdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("touchdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("touchup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
 $ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("wheel", (e: JQuery.TriggeredEvent) => {
+    let event = e.originalEvent! as WheelEvent;
+    galleryManagement.zoomScroll(event, $FULLSCREEN_IMAGE);
+});
+$RESET_BUTTON.click(() => galleryManagement.reset($FULLSCREEN_IMAGE));
+
+//$FULLSCREEN_CONTAINER.scroll((e: any) => galleryManagement.zoomScroll(e, $FULLSCREEN_IMAGE));

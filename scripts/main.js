@@ -49,6 +49,7 @@ const $CLOSE_FLSC = $("#close");
 const $FULLSCREEN_IMAGE = $("#fullscreen-image");
 const $ZOOM_IN_BUTTON = $("#zoomin");
 const $ZOOM_OUT_BUTTON = $("#zoomout");
+const $RESET_BUTTON = $("#reset");
 // ------------------
 // rejestracja
 $SUBMIT_REG.click((e) => {
@@ -104,3 +105,9 @@ $FULLSCREEN_IMAGE.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $
 $FULLSCREEN_IMAGE.on("touchup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
 $ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("wheel", (e) => {
+    let event = e.originalEvent;
+    galleryManagement.zoomScroll(event, $FULLSCREEN_IMAGE);
+});
+$RESET_BUTTON.click(() => galleryManagement.reset($FULLSCREEN_IMAGE));
+//$FULLSCREEN_CONTAINER.scroll((e: any) => galleryManagement.zoomScroll(e, $FULLSCREEN_IMAGE));

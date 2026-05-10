@@ -48,10 +48,12 @@ export class GalleryManagement {
             fullscreenContainer.css("display", "flex");
             //fullscreenImage.src = image.src;
             fullscreenImage.attr("src", image.attr("src"));
+            $("body").attr("data-scroll", "no-scroll");
         }
         else {
             //fullscreenContainer.style.display = "none";
             fullscreenContainer.css("display", "none");
+            $("body").removeAttr("data-scroll");
         }
     }
     grabPhoto(photoBool, e, fullscreenImage) {
@@ -86,17 +88,40 @@ export class GalleryManagement {
         if (photoBool) {
             this.scale += 0.1;
             if (this.scale <= 0) {
-                this.scale = 0.1;
+                this.scale = 0.2;
             }
             fullscreenImage.css("transform", `scale(${this.scale})`);
         }
         else {
             this.scale -= 0.1;
             if (this.scale <= 0) {
-                this.scale = 0.1;
+                this.scale = 0.2;
             }
             fullscreenImage.css("transform", `scale(${this.scale})`);
         }
+    }
+    zoomScroll(event, fullscreenImage) {
+        event.preventDefault();
+        if (event.deltaY < 0) {
+            this.scale += 0.1;
+        }
+        else if (event.deltaY > 0) {
+            this.scale -= 0.1;
+        }
+        if ((this.scale <= 0) || (this.scale <= 1.38778e-16)) {
+            this.scale = 0.2;
+        }
+        fullscreenImage.css("transform", `scale(${this.scale})`);
+    }
+    reset(fullscreenImage) {
+        fullscreenImage.css("transition", "all 0.2s");
+        fullscreenImage.css("top", "0px");
+        fullscreenImage.css("left", "0px");
+        fullscreenImage.css("transform", "scale(1)");
+        this.scale = 1;
+        setTimeout(() => {
+            fullscreenImage.css("transition", "transform 0.2s");
+        }, 250);
     }
 }
 /* leftButton.addEventListener('click', () => galleryManagement.previousPhoto(1));
