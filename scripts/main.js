@@ -103,6 +103,7 @@ $GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE
 $CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $FULLSCREEN_IMAGE.on("pointerdown", (e) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_CONTAINER.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
 $ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("wheel", (e) => {
