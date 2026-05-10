@@ -619,6 +619,10 @@ option {
   font-family: "Google Sans", sans-serif;
 }
 
+iframe {
+  font-family: "Google Sans", sans-serif !important;
+}
+
 #nowL {
   transition: all 0.2s;
 }
