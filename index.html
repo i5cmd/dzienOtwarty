@@ -35,7 +35,7 @@
             <a class="mobile-link button navin" id="link-calendar" href="#Harmonogram">Harmonogram</a>
             <a class="mobile-link button navin" id="link-register" href="#Rejestracja">Rejestracja</a>
             <a class="mobile-link button navin" id="link-contact" href="#Kontakt">Kontakt</a>
-            <a class="mobile-link button navin" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
+            <a class="mobile-link button" id="school-site" href="https://zsl.gliwice.pl/">Strona szkoły</a>
         </div>
     </nav>
     <main>
@@ -129,96 +129,99 @@
         </div>
         <div id="Harmonogram">
             <h1 class="article">Harmonogram</h1>
-            <div id="divine">
-                <aside id="harmo" class="article">
-                    <p>Dni otwarte odbywają się w dniu <b>22 maja 2026 roku w godzinach 12:00-16:00.</b> <br> Podczas dni otwartych grupy będą odprowadzane w przydzielonych godzinach. <br> W obu dniach:</p>
-                    <div>
-                        <select name="filter" id="filter">
-                            <option>Nic nie filtrowane</option>
-                            <option>Informatyka</option>
-                            <option>Programowanie</option>
-                            <option>Logistyka</option>
-                            <option>Elektryka</option>
-                            <option>Elektronika</option>
-                            <option>Eksploatacja portów i terminali</option>
-                        </select>
-                        <table>
-                            <tr data-category="informatyka">
-                                <td>10:00 - 11:00</td>
-                                <td>Grupa informatyków, gr 1</td>
-                                <td>Sala J3</td>
-                            </tr>
-                            <tr data-category="programowanie">
-                                <td>10:30 - 11:30</td>
-                                <td>Grupa programistów, gr 1</td>
-                                <td>Sala Y7</td>
-                            </tr>
-                            <tr data-category="logistyka">
-                                <td>11:00 - 12:00</td>
-                                <td>Grupa logistyków, gr 1</td>
-                                <td>Sala L13</td>
-                            </tr>
-                            <tr data-category="elektryka">
-                                <td>11:30 - 12:30</td>
-                                <td>Grupa elektryków, gr 1</td>
-                                <td>Sala L3</td>
-                            </tr>
-                            <tr data-category="elektronika">
-                                <td>12:00 - 13:00</td>
-                                <td>Grupa elektroników, gr 1</td>
-                                <td>Sala A0</td>
-                            </tr>
-                            <tr data-category="porty">
-                                <td>12:00 - 13:00</td>
-                                <td>Grupa osób od eksploatacji portów i terminali, gr 1</td>
-                                <td>Sala B14</td>
-                            </tr>
-                            <tr data-category="informatyka">
-                                <td>13:00 - 14:00</td>
-                                <td>Grupa informatyków, gr 2</td>
-                                <td>Sala J3</td>
-                            </tr>
-                            <tr data-category="programowanie">
-                                <td>13:30 - 14:30</td>
-                                <td>Grupa programistów, gr 2</td>
-                                <td>Sala Y7</td>
-                            </tr>
-                            <tr data-category="logistyka">
-                                <td>14:00 - 15:00</td>
-                                <td>Grupa logistyków, gr 2</td>
-                                <td>Sala L13</td>
-                            </tr>
-                            <tr data-category="elektryka">
-                                <td>14:30 - 15:30</td>
-                                <td>Grupa elektryków, gr 2</td>
-                                <td>Sala L3</td>
-                            </tr>
-                            <tr data-category="elektronika">
-                                <td>15:00 - 16:00</td>
-                                <td>Grupa elektroników, gr 2</td>
-                                <td>Sala A0</td>
-                            </tr>
-                            <tr data-category="porty">
-                                <td>15:00 - 16:00</td>
-                                <td>Grupa osób od eksploatacji portów i terminali, gr 2</td>
-                                <td>Sala B14</td>
-                            </tr>
-                        </table>
-                    </div>
-                </aside>
-                <aside id="activities">
-                    <h3>Kandydatów czekają ciekawe aktywności!</h3>
-                    <div id="act1" class="activity-card larger">
-                        Aktywności związane z zawodem!
-                    </div>
-                    <div id="act2" class="activity-card larger">
-                        Ciekawostki o zawodzie!
-                    </div>
-                    <div id="act3" class="activity-card larger">
-                        Quiz i test znajomości!
-                    </div>
-                </aside>
+            <div id="divine_container">
+                <div id="divine">
+                    <aside id="harmo" class="article">
+                        <p>Dni otwarte odbywają się w dniu <b>22 maja 2026 roku w godzinach 12:00-16:00.</b> <br> Podczas dni otwartych grupy będą odprowadzane w przydzielonych godzinach. <br> W obu dniach:</p>
+                        <div>
+                            <select name="filter" id="filter">
+                                <option>Nic nie filtrowane</option>
+                                <option>Informatyka</option>
+                                <option>Programowanie</option>
+                                <option>Logistyka</option>
+                                <option>Elektryka</option>
+                                <option>Elektronika</option>
+                                <option>Eksploatacja portów i terminali</option>
+                            </select>
+                            <table>
+                                <tr data-category="informatyka">
+                                    <td>10:00 - 11:00</td>
+                                    <td>Grupa informatyków, gr 1</td>
+                                    <td>Sala J3</td>
+                                </tr>
+                                <tr data-category="programowanie">
+                                    <td>10:30 - 11:30</td>
+                                    <td>Grupa programistów, gr 1</td>
+                                    <td>Sala Y7</td>
+                                </tr>
+                                <tr data-category="logistyka">
+                                    <td>11:00 - 12:00</td>
+                                    <td>Grupa logistyków, gr 1</td>
+                                    <td>Sala L13</td>
+                                </tr>
+                                <tr data-category="elektryka">
+                                    <td>11:30 - 12:30</td>
+                                    <td>Grupa elektryków, gr 1</td>
+                                    <td>Sala L3</td>
+                                </tr>
+                                <tr data-category="elektronika">
+                                    <td>12:00 - 13:00</td>
+                                    <td>Grupa elektroników, gr 1</td>
+                                    <td>Sala A0</td>
+                                </tr>
+                                <tr data-category="porty">
+                                    <td>12:00 - 13:00</td>
+                                    <td>Grupa osób od eksploatacji portów i terminali, gr 1</td>
+                                    <td>Sala B14</td>
+                                </tr>
+                                <tr data-category="informatyka">
+                                    <td>13:00 - 14:00</td>
+                                    <td>Grupa informatyków, gr 2</td>
+                                    <td>Sala J3</td>
+                                </tr>
+                                <tr data-category="programowanie">
+                                    <td>13:30 - 14:30</td>
+                                    <td>Grupa programistów, gr 2</td>
+                                    <td>Sala Y7</td>
+                                </tr>
+                                <tr data-category="logistyka">
+                                    <td>14:00 - 15:00</td>
+                                    <td>Grupa logistyków, gr 2</td>
+                                    <td>Sala L13</td>
+                                </tr>
+                                <tr data-category="elektryka">
+                                    <td>14:30 - 15:30</td>
+                                    <td>Grupa elektryków, gr 2</td>
+                                    <td>Sala L3</td>
+                                </tr>
+                                <tr data-category="elektronika">
+                                    <td>15:00 - 16:00</td>
+                                    <td>Grupa elektroników, gr 2</td>
+                                    <td>Sala A0</td>
+                                </tr>
+                                <tr data-category="porty">
+                                    <td>15:00 - 16:00</td>
+                                    <td>Grupa osób od eksploatacji portów i terminali, gr 2</td>
+                                    <td>Sala B14</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </aside>
+                    <aside id="activities">
+                        <h3>Kandydatów czekają ciekawe aktywności!</h3>
+                        <div id="act1" class="activity-card larger">
+                            Aktywności związane z zawodem!
+                        </div>
+                        <div id="act2" class="activity-card larger">
+                            Ciekawostki o zawodzie!
+                        </div>
+                        <div id="act3" class="activity-card larger">
+                            Quiz i test znajomości!
+                        </div>
+                    </aside>
+                </div>
             </div>
+            
         </div>
         <div id="Rejestracja">
             <h1 class="article">Rejestracja na dni otwarte</h1>
@@ -277,7 +280,7 @@
                 <a>📞 Telefon: (32) 231-36-12 oraz (32) 231-26-00 - sekretariat wew. 22</a>
             </div>
             <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1685.4833775806912!2d18.677988945107455!3d50.308122156347984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711304e89ff6d2d%3A0x814a9a38911a52b1!2zWmVzcMOzxYIgU3prw7PFgiDFgcSFY3pub8WbY2kgdyBHbGl3aWNhY2g!5e1!3m2!1sen!2spl!4v1777829473273!5m2!1sen!2spl" width="400" height="250" id="map-box" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1685.4833775806912!2d18.677988945107455!3d50.308122156347984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711304e89ff6d2d%3A0x814a9a38911a52b1!2zWmVzcMOzxYIgU3prw7PFgiDFgcSFY3pub8WbY2kgdyBHbGl3aWNhY2g!5e1!3m2!1sen!2spl!4v1777829473273!5m2!1sen!2spl" width="400" height="250" id="map-box" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div> 
     </div>

@@ -58,6 +58,11 @@ body {
         transition: all 0.2s;
     }
 
+    
+    .maps {
+      width: 70%;
+    }
+
     .mobile-nav-link:hover {
         cursor: pointer;
         background-color: #ffffff33;
@@ -673,6 +678,16 @@ form > div {
 
 #Kontakt {
   width: 95%;
+}
+
+#divine_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#divine {
+  width: 85%;
 }
 
 p {
