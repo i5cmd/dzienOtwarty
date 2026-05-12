@@ -1,3 +1,3 @@
-Strona dostępna tutaj: https://i5cmd.github.io/dzienOtwarty
+Strona dostępna tutaj: https://kartian.top/dzienOtwarty
 
 
