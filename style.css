@@ -4,6 +4,7 @@
   --white-text: #ece5e5;
   --blue-ghost-100: #ffffff33;
   --blue-ghost-200: #C3E1FF67;
+  --blue-ghost-250: #97c0e9a6;
   --blue-ghost-300: #6eb4faa6;
   --article-text: #141414;
   --blue-text: #168AFF;
@@ -16,7 +17,8 @@
   --white-text: #ece5e5;
   --blue-ghost-100: #ffffff33;
   --blue-ghost-200: #444d5567;
-  --blue-ghost-300:rgba(105, 105, 105, 0.644);
+  --blue-ghost-250:rgba(105, 105, 105, 0.644);
+  --blue-ghost-300:rgba(85, 85, 85, 0.644);
   --article-text: #ece5e5;
   --blue-text: #ece5e5;
   --blue-border: #0d3f70;
@@ -42,7 +44,7 @@ html, body {
 @media only screen and (max-width: 370px) {
     #scrollimg {
         width: 100%;
-        max-width: calc(100% - 80px) !important;
+        max-width: calc(100% - 84px) !important;
         height: 100%;
         aspect-ratio: 16 / 9;
         margin: 0;
@@ -149,7 +151,7 @@ html, body {
     }
     #scrollimg {
     width: 100%;
-     max-width: calc(100% - 80px) !important;
+     max-width: calc(100% - 84px) !important;
     height: 100%;
     aspect-ratio: 4/3 !important;
     margin: 0;
@@ -230,7 +232,7 @@ html, body {
     }
     #scrollimg {
         width: 100%;
-         max-width: calc(100% - 80px) !important;
+         max-width: calc(100% - 84px) !important;
         height: 100%;
         aspect-ratio: 16 / 9;
         margin: 0;
@@ -249,7 +251,7 @@ html, body {
 @media only screen and (max-width: 1025px) and (min-width: 501px) {
     #scrollimg {
         width: 100%;
-         max-width: calc(100% - 80px) !important;
+         max-width: calc(100% - 84px) !important;
         height: 100%;
         aspect-ratio: 16 / 9;
         margin: 0;
@@ -268,7 +270,7 @@ html, body {
 }
 
 .article {
-  padding: 0 10px 0 25px;
+  padding: 0 10px 0 32px;
   width: 100%;
   max-width: 95%;
 }
@@ -364,7 +366,7 @@ body {
   background-image: url(assets/placeholder.jpg);
   background-position: 0 -200px;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.3;
   z-index: -1;
   width: 100%;
   height: 100%;
@@ -427,7 +429,7 @@ body {
 
 #scrollimg {
     width: 100%;
-     max-width: calc(100% - 80px) !important;
+     max-width: calc(100% - 84px) !important;
     height: 100%;
     aspect-ratio: 16/9;
     margin: 0;
@@ -488,6 +490,10 @@ body {
   padding: 10px;
   background-color: var(--blue-ghost-200);
   transition: all 0.2s;
+  color: var(--article-text)
+}
+
+::marker {
   color: var(--article-text)
 }
 
@@ -564,14 +570,16 @@ td {
   padding: 4px 10px;
 }
 
+[data-checked='on'] {
+  background-color: var(--blue-ghost-250) !important;
+}
+
 tr:nth-child(even) {
   background-color: var(--blue-ghost-200);
-  border-radius: 8px;
 }
 
 tr:nth-child(1) {
   background-color: var(--blue-ghost-300);
-  border-radius: 8px;
 }
 
 #Harmonogram {
@@ -935,6 +943,9 @@ a {
   background-position: 5px;
 }
 
+#p1 {
+  margin: 0 0 10px 0;
+}
 
 #toolbar {
   width: 80%;

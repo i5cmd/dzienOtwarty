@@ -3,7 +3,6 @@ export class AlertCreator {
     Alert(title, content) {
         $("<div />", {
             id: "alert-container",
-            click: () => this.removeAlert()
         }).prependTo($("body"));
         $("html").attr("data-scroll", "no-scroll");
         $("<div />", {
@@ -28,7 +27,7 @@ export class AlertCreator {
             class: "borderb buttondefsmall",
             text: "OK",
             click: () => { this.removeAlert(); }
-        }).appendTo($("#window-controls"));
+        }).appendTo($("#window-controls")).css("cursor", "pointer");
         $("#alert-container").hide();
         $("#alert-window").css("transform", "scale(0.7)");
         setTimeout(() => {

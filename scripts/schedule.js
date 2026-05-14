@@ -71,7 +71,6 @@ export class FilterSchedule {
         }
         else {
             row.css("outline", "3px var(--blue-border) solid");
-            row.css("border-radius", "8px");
             row.attr("data-checked", "on");
         }
     }

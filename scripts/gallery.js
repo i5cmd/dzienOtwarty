@@ -49,10 +49,10 @@ export class GalleryManagement {
             fullscreenImage.css("left", "0px");
             fullscreenImage.css("transform", "scale(1)");
             this.scale = 1;
-            fullscreenContainer.css("display", "flex");
             //fullscreenImage.src = image.src;
             fullscreenImage.attr("src", image.attr("src"));
             $("body").attr("data-scroll", "no-scroll");
+            fullscreenContainer.css("display", "flex");
         }
         else {
             //fullscreenContainer.style.display = "none";
