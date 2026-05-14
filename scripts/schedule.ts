@@ -53,6 +53,8 @@ export class FilterSchedule {
         }); */
         const irows: JQuery<HTMLTableRowElement> = $(`tr[data-category='${category}']`);
         irows.css("display", "table-row");
+        const irows2: JQuery<HTMLTableRowElement> = $(`tr[data-category='no-sort']`);
+        irows2.css("display", "table-row");
     }
     /* checkRow(row: HTMLTableRowElement) {
         if (row.hasAttribute("data-checked")) {
@@ -70,7 +72,8 @@ export class FilterSchedule {
             row.removeAttr("data-checked");
         }
         else {
-            row.css("outline", "5px var(--blue-border) solid");
+            row.css("outline", "3px var(--blue-border) solid");
+            row.css("border-radius", "8px");
             row.attr("data-checked", "on");
         }
     } 

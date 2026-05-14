@@ -4,6 +4,7 @@
   --white-text: #ece5e5;
   --blue-ghost-100: #ffffff33;
   --blue-ghost-200: #C3E1FF67;
+  --blue-ghost-300: #6eb4faa6;
   --article-text: #141414;
   --blue-text: #168AFF;
   --blue-border: #0d3f70;
@@ -15,6 +16,7 @@
   --white-text: #ece5e5;
   --blue-ghost-100: #ffffff33;
   --blue-ghost-200: #444d5567;
+  --blue-ghost-300:rgba(105, 105, 105, 0.644);
   --article-text: #ece5e5;
   --blue-text: #ece5e5;
   --blue-border: #0d3f70;
@@ -560,11 +562,16 @@ footer > p {
 td {
   border: 2px var(--blue) solid;
   padding: 4px 10px;
-  border-radius: 8px;
 }
 
 tr:nth-child(even) {
   background-color: var(--blue-ghost-200);
+  border-radius: 8px;
+}
+
+tr:nth-child(1) {
+  background-color: var(--blue-ghost-300);
+  border-radius: 8px;
 }
 
 #Harmonogram {
