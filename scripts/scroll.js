@@ -9,6 +9,12 @@ export class IdNavigation {
             behavior: "smooth"
         });
     }
+    scrollTop() {
+        window.scrollBy({
+            top: -window.pageYOffset,
+            behavior: "smooth"
+        });
+    }
 }
 // const idNavigation: IdNavigation = new IdNavigation();
 /* links.forEach(link => {

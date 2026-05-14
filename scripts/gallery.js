@@ -11,12 +11,16 @@ export class GalleryManagement {
     holding = false;
     scale = 1;
     setPhoto(no, image, photos, folder) {
+        image.fadeOut(300);
         this.currentPhoto = no;
         //image.src = `${folder}${photos[this.currentPhoto]}`
-        image.css("src", `${folder}${photos[this.currentPhoto]}`);
+        setTimeout(() => {
+            image.attr("src", `${folder}${photos[this.currentPhoto]}`);
+            image.fadeIn(300);
+        }, 250);
     }
     previousPhoto(no, image, photos, folder) {
-        image.fadeOut(500);
+        image.fadeOut(300);
         setTimeout(() => {
             this.currentPhoto -= no;
             if (this.currentPhoto < 0) {
@@ -24,11 +28,11 @@ export class GalleryManagement {
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
             image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(500);
-        }, 450);
+            image.fadeIn(300);
+        }, 250);
     }
     nextPhoto(no, image, photos, folder) {
-        image.fadeOut(500);
+        image.fadeOut(300);
         setTimeout(() => {
             this.currentPhoto += no;
             if (this.currentPhoto >= photos.length) {
@@ -36,8 +40,8 @@ export class GalleryManagement {
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
             image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(500);
-        }, 450);
+            image.fadeIn(300);
+        }, 250);
     }
     fullscreenMode(turn, image, fullscreenImage, fullscreenContainer) {
         if (turn) {
@@ -122,6 +126,22 @@ export class GalleryManagement {
         setTimeout(() => {
             fullscreenImage.css("transition", "transform 0.2s");
         }, 250);
+    }
+    photoGrid(image, photos, folder) {
+        let photoIndex = -1;
+        photos.forEach((ph, index) => {
+            photoIndex++;
+            $("<img />", {
+                draggable: "false",
+                class: "fota",
+                src: `${folder}${ph}`
+            }).appendTo($("#photos")).attr("data-index", index);
+            $(".fota").click((e) => {
+                const attr = parseInt(e.currentTarget.getAttribute("data-index"));
+                this.currentPhoto = photoIndex;
+                this.setPhoto(attr, image, photos, folder);
+            });
+        });
     }
 }
 /* leftButton.addEventListener('click', () => galleryManagement.previousPhoto(1));

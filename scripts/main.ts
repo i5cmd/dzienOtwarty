@@ -8,6 +8,8 @@ import { IdNavigation } from "./scroll.js";
 import { NavManagement } from "./mobilenav.js";
 import { FilterSchedule } from "./schedule.js";
 import { GalleryManagement } from "./gallery.js";
+import { MoveTop } from "./move-topbutton.js";
+import { AlertCreator } from "./alertcreator.js";
 
 const registration: RegistrationSystem = new RegistrationSystem();
 const themeManager: ThemeManager = new ThemeManager();
@@ -15,6 +17,8 @@ const idNav: IdNavigation = new IdNavigation();
 const navManagement: NavManagement = new NavManagement();
 const filterSchedule: FilterSchedule = new FilterSchedule();
 const galleryManagement: GalleryManagement = new GalleryManagement();
+const moveTop: MoveTop = new MoveTop();
+const alerts: AlertCreator = new AlertCreator();
 
 // zmienne
 
@@ -49,7 +53,7 @@ const $ROW: JQuery<HTMLTableRowElement> = $("tr");
 const $LEFT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#leftb");
 const $RIGHT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#rightb");
 const $GALLERY_IMAGE: JQuery<HTMLImageElement> = $("#scrollimg");
-const photos: Array<String> = ["1.jpg", "2.jpg", "3.jpg"];
+const photos: Array<String> = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"];
 const folder: string = "assets/zdjecia/"
 const $FULLSCREEN_CONTAINER: JQuery<HTMLDivElement> = $("#fullscreen-image-container");
 const $CLOSE_FLSC: JQuery<HTMLButtonElement> = $("#close");
@@ -57,6 +61,9 @@ const $FULLSCREEN_IMAGE: JQuery<HTMLImageElement> = $("#fullscreen-image");
 const $ZOOM_IN_BUTTON: JQuery<HTMLButtonElement> = $("#zoomin");
 const $ZOOM_OUT_BUTTON: JQuery<HTMLButtonElement> = $("#zoomout");
 const $RESET_BUTTON: JQuery<HTMLButtonElement> = $("#reset");
+
+// move top
+const $MOVE_BUTTON: JQuery<HTMLButtonElement> = $("#movetopbutton");
 
 // ------------------
 
@@ -69,8 +76,9 @@ $SUBMIT_REG.click((e) => {
     const $GROUP: JQuery<HTMLSelectElement> = $("#group");
     const checkboxes: NodeList = document.querySelectorAll(".checkbox:checked"); // nwm jak interpretowac nodelist w jquery, wiec tak to zostawiam bo dziala lol
     const $RODO: HTMLInputElement = $("#rodoiprzetwarzanie")[0] as HTMLInputElement; // [0] bo to checkbox itd. nawet jak jest id, to jq to traktuje jak ala tablice. taka notka dla mnie lmao
+    const $FORM: HTMLFormElement = $("#form-registration")[0] as HTMLFormElement;
     e.preventDefault();
-    let data: any = registration.register($USERNAME.val() as string, $USERSURNAME.val() as string, $EMAIL.val() as string, $GROUP.val() as string, checkboxes, $RODO, $REGNUM, $REG, $REG_CON);
+    let data: any = registration.register($USERNAME.val() as string, $USERSURNAME.val() as string, $EMAIL.val() as string, $GROUP.val() as string, checkboxes, $RODO, $REGNUM, $REG, $REG_CON, $FORM);
     console.log(data);
 })
 
@@ -87,6 +95,7 @@ $NAV_LINK.click((e) => {
     e.preventDefault();
     const target: string = $(e.currentTarget).attr("href")!;
     idNav.scrollTo(target);
+    $MOVE_BUTTON.css('display', 'block');
 })
 
 $REGISTER_BUT.click((e) => {
@@ -125,13 +134,16 @@ $ROW.click((e) => filterSchedule.checkRow($(e.currentTarget as HTMLTableRowEleme
 // galeria
 
 galleryManagement.setPhoto(0, $GALLERY_IMAGE, photos, folder);
+galleryManagement.photoGrid($GALLERY_IMAGE, photos, folder);
 
 $LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMAGE, photos, folder));
 $RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
 $GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
 $FULLSCREEN_IMAGE.on("pointerdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchdown", (e: any) => galleryManagement.grabPhotoMobile(true, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_IMAGE.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
+$FULLSCREEN_IMAGE.on("touchup", (e: any) => galleryManagement.grabPhotoMobile(false, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_CONTAINER.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 $ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
 $ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
@@ -141,4 +153,17 @@ $FULLSCREEN_IMAGE.on("wheel", (e: JQuery.TriggeredEvent) => {
 });
 $RESET_BUTTON.click(() => galleryManagement.reset($FULLSCREEN_IMAGE));
 
+
+
 //$FULLSCREEN_CONTAINER.scroll((e: any) => galleryManagement.zoomScroll(e, $FULLSCREEN_IMAGE));
+
+// move
+$MOVE_BUTTON.click(() => {
+    idNav.scrollTop();
+    $MOVE_BUTTON.css('display', 'none');
+});
+
+$('html').on("wheel", () => {
+    moveTop.checkPosition($MOVE_BUTTON);
+})
+

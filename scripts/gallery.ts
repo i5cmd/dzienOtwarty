@@ -13,12 +13,16 @@ export class GalleryManagement {
     holding: boolean = false;
     scale: number = 1;
     setPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
+        image.fadeOut(300);
         this.currentPhoto = no;
         //image.src = `${folder}${photos[this.currentPhoto]}`
-        image.css("src", `${folder}${photos[this.currentPhoto]}`);
+        setTimeout(() => {
+            image.attr("src", `${folder}${photos[this.currentPhoto]}`);
+            image.fadeIn(300);
+        }, 250)
     }
     previousPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
-        image.fadeOut(500);
+        image.fadeOut(300);
         setTimeout(() => { 
             this.currentPhoto -= no;
             if (this.currentPhoto < 0) {
@@ -26,11 +30,11 @@ export class GalleryManagement {
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
             image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(500);
-        }, 450);
+            image.fadeIn(300);
+        }, 250);
     }
     nextPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
-        image.fadeOut(500);
+        image.fadeOut(300);
         setTimeout(() => { 
             this.currentPhoto += no;
             if (this.currentPhoto >= photos.length) {
@@ -38,8 +42,8 @@ export class GalleryManagement {
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
             image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(500);
-        }, 450);
+            image.fadeIn(300);
+        }, 250);
     }
     fullscreenMode(turn: boolean, image: JQuery<HTMLImageElement>, fullscreenImage: JQuery<HTMLImageElement>, fullscreenContainer: JQuery<HTMLDivElement>): void {
         if (turn) {
@@ -88,6 +92,36 @@ export class GalleryManagement {
             startY = e.pageY;
         }
     }
+    grabPhotoMobile(photoBool: boolean, e: TouchEvent, fullscreenImage: JQuery<HTMLImageElement>): void {
+        let startX: number = e.touches[0].pageX; // zdobadz pierwotne pozycje
+        let startY: number = e.touches[0].pageY;
+        let deltaX: number = 0;
+        let deltaY: number = 0;
+        let locationY: any = null
+        let locationX: any = null
+        if (photoBool) {
+            $("html").on("touchmove", (e: any) => moveImage(e.touches[0]));
+            locationY = document.documentElement.scrollTop;
+            locationX = document.documentElement.scrollLeft;
+        }
+        else {
+            $("html").off("touchmove");
+        }
+        function moveImage(e: TouchEvent) {
+            document.documentElement.scrollTop = locationY;
+            document.documentElement.scrollLeft = locationX;
+            deltaX = e.touches[0].pageX - startX; // oblicz ile kratek sie ruszyl obrazek
+            deltaY = e.touches[0].pageY - startY;
+
+            fullscreenImage.offset({
+                "top": fullscreenImage.offset()!.top + deltaY, // naloz na obrazek
+                "left": fullscreenImage.offset()!.left + deltaX,
+            }) 
+
+            startX = e.touches[0].pageX; // zdobadz stara pozycje na pozniej
+            startY = e.touches[0].pageY;
+        }
+    }
     zoom(photoBool: boolean, fullscreenImage: JQuery<HTMLImageElement>): void {
         if (photoBool) {
             this.scale += 0.1;
@@ -126,6 +160,22 @@ export class GalleryManagement {
         setTimeout(() => {
             fullscreenImage.css("transition", "transform 0.2s")
         }, 250)
+    }
+    photoGrid(image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string) {
+        let photoIndex = -1;
+        photos.forEach((ph, index) => {
+            photoIndex++;
+            $("<img />", {
+                draggable: "false",
+                class: "fota",
+                src: `${folder}${ph}`
+            }).appendTo($("#photos")).attr("data-index", index);
+            $(".fota").click((e) => {
+                const attr: number = parseInt(e.currentTarget.getAttribute("data-index")!);
+                this.currentPhoto = photoIndex;
+                this.setPhoto(attr, image, photos, folder);
+            })
+        });
     }
 }
 
