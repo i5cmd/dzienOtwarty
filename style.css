@@ -40,7 +40,7 @@ html, body {
 @media only screen and (max-width: 370px) {
     #scrollimg {
         width: 100%;
-        max-width: 200px !important;
+        max-width: 370px !important;
         height: 100%;
         aspect-ratio: 16 / 9;
         margin: 0;
@@ -228,7 +228,7 @@ html, body {
     }
     #scrollimg {
         width: 100%;
-        max-width: 250px !important;
+        max-width: 450px !important;
         height: 100%;
         aspect-ratio: 16 / 9;
         margin: 0;
