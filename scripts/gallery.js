@@ -88,6 +88,36 @@ export class GalleryManagement {
             startY = e.pageY;
         }
     }
+    /*  grabPhotoMobile(photoBool: boolean, e: TouchEvent, fullscreenImage: JQuery<HTMLImageElement>): void {
+        let startX: number = e.touches[0].pageX; // zdobadz pierwotne pozycje
+        let startY: number = e.touches[0].pageY;
+        let deltaX: number = 0;
+        let deltaY: number = 0;
+        let locationY: any = null
+        let locationX: any = null
+        if (photoBool) {
+            $("html").on("touchmove", (e: any) => moveImage(e.touches[0]));
+            locationY = document.documentElement.scrollTop;
+            locationX = document.documentElement.scrollLeft;
+        }
+        else {
+            $("html").off("touchmove");
+        }
+        function moveImage(e: TouchEvent) {
+            document.documentElement.scrollTop = locationY;
+            document.documentElement.scrollLeft = locationX;
+            deltaX = e.touches[0].pageX - startX; // oblicz ile kratek sie ruszyl obrazek
+            deltaY = e.touches[0].pageY - startY;
+
+            fullscreenImage.offset({
+                "top": fullscreenImage.offset()!.top + deltaY, // naloz na obrazek
+                "left": fullscreenImage.offset()!.left + deltaX,
+            })
+
+            startX = e.touches[0].pageX; // zdobadz stara pozycje na pozniej
+            startY = e.touches[0].pageY;
+        }
+    } niestety nie udalo sie na telefonie. nie bede sie tym katowal teraz juz*/
     zoom(photoBool, fullscreenImage) {
         if (photoBool) {
             this.scale += 0.1;

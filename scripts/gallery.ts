@@ -92,7 +92,7 @@ export class GalleryManagement {
             startY = e.pageY;
         }
     }
-    grabPhotoMobile(photoBool: boolean, e: TouchEvent, fullscreenImage: JQuery<HTMLImageElement>): void {
+    /*  grabPhotoMobile(photoBool: boolean, e: TouchEvent, fullscreenImage: JQuery<HTMLImageElement>): void {
         let startX: number = e.touches[0].pageX; // zdobadz pierwotne pozycje
         let startY: number = e.touches[0].pageY;
         let deltaX: number = 0;
@@ -121,7 +121,7 @@ export class GalleryManagement {
             startX = e.touches[0].pageX; // zdobadz stara pozycje na pozniej
             startY = e.touches[0].pageY;
         }
-    }
+    } niestety nie udalo sie na telefonie. nie bede sie tym katowal teraz juz*/
     zoom(photoBool: boolean, fullscreenImage: JQuery<HTMLImageElement>): void {
         if (photoBool) {
             this.scale += 0.1;
