@@ -12,47 +12,56 @@ export class GalleryManagement {
     currentPhoto: number = 0;
     holding: boolean = false;
     scale: number = 1;
-    setPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
-        image.fadeOut(300);
+
+    constructor(
+        private image: JQuery<HTMLImageElement>,
+        private photos: Array<string>,
+        private folder: string,
+        private fullscreenImage: JQuery<HTMLImageElement>, fullscreenContainer: JQuery<HTMLDivElement>
+    ) {}
+
+
+    setPhoto(no: number): void {
+        this.image.fadeOut(300);
         this.currentPhoto = no;
         //image.src = `${folder}${photos[this.currentPhoto]}`
         setTimeout(() => {
-            image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(300);
+            this.image.attr("src", `${this.folder}${this.photos[this.currentPhoto]}`);
+            this.image.fadeIn(300);
         }, 250)
     }
-    previousPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
-        image.fadeOut(300);
+    previousPhoto(no: number): void {
+        this.image.fadeOut(300);
         setTimeout(() => { 
             this.currentPhoto -= no;
             if (this.currentPhoto < 0) {
-                this.currentPhoto = photos.length - 1;
+                this.currentPhoto = this.photos.length - 1;
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
-            image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(300);
+            this.image.attr("src", `${this.folder}${this.photos[this.currentPhoto]}`);
+            this.image.fadeIn(300);
         }, 250);
     }
-    nextPhoto(no: number, image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string): void {
-        image.fadeOut(300);
+    nextPhoto(no: number): void {
+        this.image.fadeOut(300);
         setTimeout(() => { 
             this.currentPhoto += no;
-            if (this.currentPhoto >= photos.length) {
+            if (this.currentPhoto >= this.photos.length) {
                 this.currentPhoto = 0;
             }
             // image.src = `${folder}${photos[this.currentPhoto]}`;
-            image.attr("src", `${folder}${photos[this.currentPhoto]}`);
-            image.fadeIn(300);
+            this.image.attr("src", `${this.folder}${this.photos[this.currentPhoto]}`);
+            this.image.fadeIn(300);
         }, 250);
     }
-    fullscreenMode(turn: boolean, image: JQuery<HTMLImageElement>, fullscreenImage: JQuery<HTMLImageElement>, fullscreenContainer: JQuery<HTMLDivElement>): void {
+    fullscreenMode(turn: boolean, fullscreenContainer: JQuery<HTMLDivElement>): void {
         if (turn) {
-            fullscreenImage.css("top", "0px");
-            fullscreenImage.css("left", "0px");
-            fullscreenImage.css("transform", "scale(1)");
+            this.fullscreenImage.css("top", "0px");
+            this.fullscreenImage.css("left", "0px");
+            this.fullscreenImage.css("transform", "scale(1)");
             this.scale = 1;
             //fullscreenImage.src = image.src;
-            fullscreenImage.attr("src", image.attr("src")!);
+            this.fullscreenImage.attr("src", this.image.attr("src")!);
             $("body").attr("data-scroll", "no-scroll");
             fullscreenContainer.css("display", "flex");
         }
@@ -122,20 +131,20 @@ export class GalleryManagement {
             startY = e.touches[0].pageY;
         }
     } niestety nie udalo sie na telefonie. nie bede sie tym katowal teraz juz*/
-    zoom(photoBool: boolean, fullscreenImage: JQuery<HTMLImageElement>): void {
+    zoom(photoBool: boolean): void {
         if (photoBool) {
             this.scale += 0.1;
             if (this.scale <= 0) {
                 this.scale = 0.2;
             }
-            fullscreenImage.css("transform", `scale(${this.scale})`);
+            this.fullscreenImage.css("transform", `scale(${this.scale})`);
         }
         else {
             this.scale -= 0.1;
             if (this.scale <= 0) {
                 this.scale = 0.2;
             }
-            fullscreenImage.css("transform", `scale(${this.scale})`);
+            this.fullscreenImage.css("transform", `scale(${this.scale})`);
         }
     }
     zoomScroll(event: WheelEvent, fullscreenImage: JQuery<HTMLImageElement>): void {
@@ -151,29 +160,29 @@ export class GalleryManagement {
         }
         fullscreenImage.css("transform", `scale(${this.scale})`);
     }
-    reset(fullscreenImage: JQuery<HTMLImageElement>) {
-        fullscreenImage.css("transition", "all 0.2s")
-        fullscreenImage.css("top", "0px");
-        fullscreenImage.css("left", "0px");
-        fullscreenImage.css("transform", "scale(1)");
+    reset() {
+        this.fullscreenImage.css("transition", "all 0.2s")
+        this.fullscreenImage.css("top", "0px");
+        this.fullscreenImage.css("left", "0px");
+        this.fullscreenImage.css("transform", "scale(1)");
         this.scale = 1;
         setTimeout(() => {
-            fullscreenImage.css("transition", "transform 0.2s")
+            this.fullscreenImage.css("transition", "transform 0.2s")
         }, 250)
     }
-    photoGrid(image: JQuery<HTMLImageElement>, photos: Array<String>, folder: string) {
+    photoGrid() {
         let photoIndex = -1;
-        photos.forEach((ph, index) => {
+        this.photos.forEach((ph, index) => {
             photoIndex++;
             $("<img />", {
                 draggable: "false",
                 class: "fota",
-                src: `${folder}${ph}`
+                src: `${this.folder}${ph}`
             }).appendTo($("#photos")).attr("data-index", index);
             $(".fota").click((e) => {
                 const attr: number = parseInt(e.currentTarget.getAttribute("data-index")!);
                 this.currentPhoto = photoIndex;
-                this.setPhoto(attr, image, photos, folder);
+                this.setPhoto(attr);
             })
         });
     }

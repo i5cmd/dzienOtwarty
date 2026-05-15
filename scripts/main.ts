@@ -11,15 +11,6 @@ import { GalleryManagement } from "./gallery.js";
 import { MoveTop } from "./move-topbutton.js";
 import { AlertCreator } from "./alertcreator.js";
 
-const registration: RegistrationSystem = new RegistrationSystem();
-const themeManager: ThemeManager = new ThemeManager();
-const idNav: IdNavigation = new IdNavigation();
-const navManagement: NavManagement = new NavManagement();
-const filterSchedule: FilterSchedule = new FilterSchedule();
-const galleryManagement: GalleryManagement = new GalleryManagement();
-const moveTop: MoveTop = new MoveTop();
-const alerts: AlertCreator = new AlertCreator();
-
 // zmienne
 
 let themeLocal = theme; // motyw
@@ -53,7 +44,7 @@ const $ROW: JQuery<HTMLTableRowElement> = $("tr");
 const $LEFT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#leftb");
 const $RIGHT_GALLERY_BUTTON: JQuery<HTMLButtonElement> = $("#rightb");
 const $GALLERY_IMAGE: JQuery<HTMLImageElement> = $("#scrollimg");
-const photos: Array<String> = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"];
+const photos: Array<string> = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"];
 const folder: string = "assets/zdjecia/"
 const $FULLSCREEN_CONTAINER: JQuery<HTMLDivElement> = $("#fullscreen-image-container");
 const $CLOSE_FLSC: JQuery<HTMLButtonElement> = $("#close");
@@ -66,6 +57,14 @@ const $RESET_BUTTON: JQuery<HTMLButtonElement> = $("#reset");
 const $MOVE_BUTTON: JQuery<HTMLButtonElement> = $("#movetopbutton");
 
 // ------------------
+
+const registration: RegistrationSystem = new RegistrationSystem();
+const themeManager: ThemeManager = new ThemeManager();
+const idNav: IdNavigation = new IdNavigation();
+const navManagement: NavManagement = new NavManagement();
+const filterSchedule: FilterSchedule = new FilterSchedule();
+const galleryManagement: GalleryManagement = new GalleryManagement($GALLERY_IMAGE, photos, folder, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER);
+const moveTop: MoveTop = new MoveTop();
 
 // rejestracja
 
@@ -133,25 +132,25 @@ $ROW.click((e) => filterSchedule.checkRow($(e.currentTarget as HTMLTableRowEleme
 
 // galeria
 
-galleryManagement.setPhoto(0, $GALLERY_IMAGE, photos, folder);
-galleryManagement.photoGrid($GALLERY_IMAGE, photos, folder);
+galleryManagement.setPhoto(0);
+galleryManagement.photoGrid();
 
-$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMAGE, photos, folder));
-$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
-$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
-$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1));
+$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1));
+$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $FULLSCREEN_CONTAINER));
+$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $FULLSCREEN_CONTAINER));
 $FULLSCREEN_IMAGE.on("pointerdown", (e: any) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 // $FULLSCREEN_IMAGE.on("touchstart", (e: any) => galleryManagement.grabPhotoMobile(true, e, $FULLSCREEN_IMAGE)); wyjasnienie w galleryManagement
 $FULLSCREEN_IMAGE.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 // $FULLSCREEN_IMAGE.on("touchend", (e: any) => galleryManagement.grabPhotoMobile(false, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_CONTAINER.on("pointerup", (e: any) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
-$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
-$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
+$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true));
+$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false));
 $FULLSCREEN_IMAGE.on("wheel", (e: JQuery.TriggeredEvent) => {
     let event = e.originalEvent! as WheelEvent;
     galleryManagement.zoomScroll(event, $FULLSCREEN_IMAGE);
 });
-$RESET_BUTTON.click(() => galleryManagement.reset($FULLSCREEN_IMAGE));
+$RESET_BUTTON.click(() => galleryManagement.reset());
 
 
 

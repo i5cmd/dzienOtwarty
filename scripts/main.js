@@ -8,15 +8,6 @@ import { NavManagement } from "./mobilenav.js";
 import { FilterSchedule } from "./schedule.js";
 import { GalleryManagement } from "./gallery.js";
 import { MoveTop } from "./move-topbutton.js";
-import { AlertCreator } from "./alertcreator.js";
-const registration = new RegistrationSystem();
-const themeManager = new ThemeManager();
-const idNav = new IdNavigation();
-const navManagement = new NavManagement();
-const filterSchedule = new FilterSchedule();
-const galleryManagement = new GalleryManagement();
-const moveTop = new MoveTop();
-const alerts = new AlertCreator();
 // zmienne
 let themeLocal = theme; // motyw
 let powered = false; // mobilenav
@@ -53,6 +44,13 @@ const $RESET_BUTTON = $("#reset");
 // move top
 const $MOVE_BUTTON = $("#movetopbutton");
 // ------------------
+const registration = new RegistrationSystem();
+const themeManager = new ThemeManager();
+const idNav = new IdNavigation();
+const navManagement = new NavManagement();
+const filterSchedule = new FilterSchedule();
+const galleryManagement = new GalleryManagement($GALLERY_IMAGE, photos, folder, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER);
+const moveTop = new MoveTop();
 // rejestracja
 $SUBMIT_REG.click((e) => {
     const $USERNAME = $("#name");
@@ -104,24 +102,24 @@ $FILTER.on("change", () => filterSchedule.filterTable($FILTER.val(), $ROW));
 }); */
 $ROW.click((e) => filterSchedule.checkRow($(e.currentTarget)));
 // galeria
-galleryManagement.setPhoto(0, $GALLERY_IMAGE, photos, folder);
-galleryManagement.photoGrid($GALLERY_IMAGE, photos, folder);
-$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1, $GALLERY_IMAGE, photos, folder));
-$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1, $GALLERY_IMAGE, photos, folder));
-$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
-$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $GALLERY_IMAGE, $FULLSCREEN_IMAGE, $FULLSCREEN_CONTAINER));
+galleryManagement.setPhoto(0);
+galleryManagement.photoGrid();
+$LEFT_GALLERY_BUTTON.click(() => galleryManagement.previousPhoto(1));
+$RIGHT_GALLERY_BUTTON.click(() => galleryManagement.nextPhoto(1));
+$GALLERY_IMAGE.click(() => galleryManagement.fullscreenMode(true, $FULLSCREEN_CONTAINER));
+$CLOSE_FLSC.click(() => galleryManagement.fullscreenMode(false, $FULLSCREEN_CONTAINER));
 $FULLSCREEN_IMAGE.on("pointerdown", (e) => galleryManagement.grabPhoto(true, e, $FULLSCREEN_IMAGE));
 // $FULLSCREEN_IMAGE.on("touchstart", (e: any) => galleryManagement.grabPhotoMobile(true, e, $FULLSCREEN_IMAGE)); wyjasnienie w galleryManagement
 $FULLSCREEN_IMAGE.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
 // $FULLSCREEN_IMAGE.on("touchend", (e: any) => galleryManagement.grabPhotoMobile(false, e, $FULLSCREEN_IMAGE));
 $FULLSCREEN_CONTAINER.on("pointerup", (e) => galleryManagement.grabPhoto(false, e, $FULLSCREEN_IMAGE));
-$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true, $FULLSCREEN_IMAGE));
-$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false, $FULLSCREEN_IMAGE));
+$ZOOM_IN_BUTTON.click(() => galleryManagement.zoom(true));
+$ZOOM_OUT_BUTTON.click(() => galleryManagement.zoom(false));
 $FULLSCREEN_IMAGE.on("wheel", (e) => {
     let event = e.originalEvent;
     galleryManagement.zoomScroll(event, $FULLSCREEN_IMAGE);
 });
-$RESET_BUTTON.click(() => galleryManagement.reset($FULLSCREEN_IMAGE));
+$RESET_BUTTON.click(() => galleryManagement.reset());
 //$FULLSCREEN_CONTAINER.scroll((e: any) => galleryManagement.zoomScroll(e, $FULLSCREEN_IMAGE));
 // move
 $MOVE_BUTTON.click(() => {

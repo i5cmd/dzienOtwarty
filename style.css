@@ -326,7 +326,7 @@ body {
 #site-mode-button {
   width: 30px;
   height: 30px;
-  background-image: url(assets/moony.png);
+  background-image: url(assets/moony.svg);
   background-color: #00000000;
   border: 0;
   background-size: cover;
@@ -868,6 +868,10 @@ a {
   outline: 2px var(--blue) solid;
   outline-offset: 2px;
   transition: filter 0.2s;
+}
+
+#photos > .photo-checked {
+  transform: translateX(1.03)
 }
 
 #close {

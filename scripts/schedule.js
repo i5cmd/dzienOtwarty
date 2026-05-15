@@ -70,8 +70,13 @@ export class FilterSchedule {
             row.removeAttr("data-checked");
         }
         else {
-            row.css("outline", "3px var(--blue-border) solid");
-            row.attr("data-checked", "on");
+            if (row.attr("data-category") == "no-sort") {
+                return;
+            }
+            else {
+                row.css("outline", "3px var(--blue-border) solid");
+                row.attr("data-checked", "on");
+            }
         }
     }
 }
